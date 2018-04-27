@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1, maximum-scale=1.0, user-scalable=no"">
+    <title>Ngancham</title>
+    <style>
+    @media print {
+      @page {
+        size: letter landscape;
+        margin: 3.0mm;
+        height:120mm;
+        margin: 0mm;
+      }
+      html, body {
+        width: 80mm;
+        height: 120mm;
+        margin: 0mm;
+      }
+    }
+    table {
+      font-size: 12pt;
+      border-collapse: separate;
+      border-spacing: 20px 3px;
+      border-bottom-style: solid;
+      border-bottom-width: 1px; 
+    }
+    h2{
+      font-size: 12pt;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h4{
+      font-size: 12pt;
+      text-align: right;
+      margin-right: 5px;
+    }
+  </style>
+  </head>
+<body>
+  <div id="print"></div>
+</body>
+<script src="./dist/bundle.js" ></script>
+</html>
