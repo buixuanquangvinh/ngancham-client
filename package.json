@@ -1,18 +1,16 @@
 {
   "name": "minerva_ui",
+  "productName": "Ngan cham",
   "version": "1.0.0",
-  "description": "minerva react ui",
-  "main": "electron.js",
+  "description": "ngancham react ui",
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "build_production": "webpack -p --config webpack.config.js",
-    "server": "http-server",
-    "app": "electron src/electron.js"
+    "server": "http-server"
   },
   "author": "bui xuan quang vinh",
   "license": "ISC",
   "dependencies": {
-    "electron-print": "^1.0.2",
     "file-saver": "^1.3.3",
     "highcharts": "^6.0.4",
     "lodash": "^4.17.4",

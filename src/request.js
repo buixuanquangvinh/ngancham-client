@@ -1,6 +1,6 @@
 import 'whatwg-fetch'
 
-const rootPath = 'http://localhost:3000/'
+const rootPath = 'https://ngancham.herokuapp.com/'
 export default function request(path,option = {}){
 
 	let defaultOption = {

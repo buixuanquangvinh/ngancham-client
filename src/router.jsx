@@ -21,7 +21,7 @@ class AppRouter extends Component{
 
 	connectSocket = ()=>{
 	    const { socketUpdate } = this.props
-	    let socket = new WebSocket("ws://localhost:3000/cable")
+	    let socket = new WebSocket("wss://ngancham.herokuapp.com/cable")
 
 	    socket.onopen = function (event) {
 	      	socket.send(JSON.stringify({"command":"subscribe","identifier":"{\"channel\":\"OrderChannel\"}"}))

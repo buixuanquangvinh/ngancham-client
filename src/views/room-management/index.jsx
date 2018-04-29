@@ -20,13 +20,13 @@ class RoomManagement extends Component {
 	        	<RoomList/>
 	        </div>
 	        {currentRoom.id?
-		        <div className="col-6">
+		        <div className="col-5">
 		        	<TakeAbleOrderList/>
 		        	<TableList/>
 		        </div>:null
 		    }
 		    {currentRoom.id?
-		        <div className="col-4">
+		        <div className="col-5">
 					{currentTable.id?<TableDetail/>:<PendingOrderedItemList/>}	        	
 		        </div>:null
 	    	}
