@@ -26,6 +26,13 @@ export default function reducer(state = initialState, action) {
     case ActionType.CREATE_ORDER:
       return {...state, loading: true}
     case ActionType.CREATE_ORDER_SUCCESSED:
+      ipcRenderer.send('print',action.payload)
+      return {...state, loading: false}
+
+    case ActionType.CREATE_ORDERED_ITEM:
+      return {...state, loading: true}
+    case ActionType.CREATE_ORDERED_ITEM_SUCCESSED:
+      ipcRenderer.send('print',action.payload)
       return {...state, loading: false}
 
     case ActionType.SAVE_ORDER:
@@ -81,7 +88,6 @@ export default function reducer(state = initialState, action) {
       const { orders, ordered_items } = state
       const { action_type, data } = action.payload
       if(action_type=='create_order'){
-		ipcRenderer.send('print',action.payload)
         const new_ordered_items = data.ordered_items.map((ordered_item)=>{
           return {...ordered_item,item_modifiers:JSON.parse(ordered_item.item_modifiers)}
         })
@@ -97,7 +103,6 @@ export default function reducer(state = initialState, action) {
         return {...state,orders:newOrders}
       }
       if(action_type=='create_ordered_item'){
-		ipcRenderer.send('print',action.payload)
         const new_ordered_items = data.ordered_items.map((ordered_item)=>{
           return {...ordered_item,item_modifiers:JSON.parse(ordered_item.item_modifiers)}
         })
