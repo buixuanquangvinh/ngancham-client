@@ -7,8 +7,8 @@ export default class OrderManagement extends Component {
 	render(){
 	  	return (
 	      	<div className="row">
-	        	<div className="col-3"><Menu/></div>
-	        	<div className="col-9"><OrderItemList/></div>
+	        	<div className="col-4"><Menu/></div>
+	        	<div className="col-8"><OrderItemList/></div>
 	      	</div>
 	    )
 	}

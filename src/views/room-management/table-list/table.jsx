@@ -21,7 +21,7 @@ class Table extends Component {
 			className = "border rounded p-1 text-center bg-success"
 	  	return (
 	  		<AppDropable type="order" onDrop={(order)=>saveOrder({...order,table_id:table.id})}>
-		      	<div className={className} style={{height:'200px'}} onClick={handleTableCLick}>
+		      	<div className={className} style={{height:'150px'}} onClick={handleTableCLick}>
 		        	{table.table_number}
 		        	{orders.map((order)=>{
 		        		return <Order key={order.id} order={order}/>

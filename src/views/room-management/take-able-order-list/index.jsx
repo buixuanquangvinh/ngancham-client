@@ -12,9 +12,9 @@ class TakeAbleOrderList extends Component {
   	return (
       <AppSection label='HÓA ĐƠN CHƯA CHỌN BÀN HOẶC CHUYỂN BÀN'>
         <AppDropable type='order' onDrop={(order)=>saveOrder({...order,table_id:null})}>
-          <div className='row' style={{minHeight:'100px'}}>
+          <div className='row' style={{minHeight:'60px'}}>
             {availableOrders.map((order)=>{
-              return <div className='col-2' key={order.id}><Order order={order}/></div>
+              return <div className='col-3' key={order.id}><Order order={order}/></div>
             })}
           </div>
         </AppDropable>

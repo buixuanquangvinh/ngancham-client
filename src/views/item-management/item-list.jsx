@@ -11,7 +11,7 @@ class ItemList extends Component {
   	return (
       <div className='row'>
         {itemList.map((item)=>{
-          return <div className='col-2' key={item.id}><Item item={item}/></div>
+          return <div className='col-3' key={item.id}><Item item={item}/></div>
         })}
       </div>
     )

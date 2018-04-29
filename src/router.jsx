@@ -4,8 +4,16 @@ import { render } from 'react-dom'
 import { Router, IndexRoute, Route, hashHistory } from 'react-router'
 
 import App from 'components/app'
-import { OrderAction } from 'features/order'
+import { CategorySelector } from 'features/category'
+import { ItemSelector } from 'features/item'
+import { LoginSelector } from 'features/login'
+import { OrderSelector, OrderAction } from 'features/order'
+import { RoomSelector } from 'features/room'
+import { TableSelector } from 'features/table'
+
 import { Login, Dashboard, CategoryManagement, ItemManagement, ItemDetail, OrderCreator, RoomManagement } from 'views'
+
+import { AppLoadingOverlay } from 'components/common-ui'
 
 class AppRouter extends Component{
 
@@ -36,25 +44,29 @@ class AppRouter extends Component{
 	}
 
 	render(){
+		const { loading } = this.props
 		return(
-			<Router history={hashHistory}>
-			    <Route path="/" component={App}>
-			    	<IndexRoute component={Dashboard}/>
-			    	<Route path="category" component={CategoryManagement}/>
-			    	<Route path="item" component={ItemManagement}/>
-			    	<Route path="item/:id" component={ItemDetail}/>
-			    	<Route path="order-creator" component={OrderCreator}/>
-			    	<Route path="room" component={RoomManagement}/>
-			    </Route>
-			    <Route path="login" component={Login}/>
-		 	</Router>
+			<AppLoadingOverlay loading={loading}>
+				<Router history={hashHistory}>
+				    <Route path="/" component={App}>
+				    	<IndexRoute component={Dashboard}/>
+				    	<Route path="category" component={CategoryManagement}/>
+				    	<Route path="item" component={ItemManagement}/>
+				    	<Route path="item/:id" component={ItemDetail}/>
+				    	<Route path="order-creator" component={OrderCreator}/>
+				    	<Route path="room" component={RoomManagement}/>
+				    </Route>
+				    <Route path="login" component={Login}/>
+			 	</Router>
+		 	</AppLoadingOverlay>
 		)
 	}
 }
 
 const mapStateToProps = (state) => {
-  return {
-  }
+  	return {
+  		loading:(CategorySelector.getLoading(state) || ItemSelector.getLoading(state) || LoginSelector.getLoading(state) || OrderSelector.getLoading(state) || RoomSelector.getLoading(state) || TableSelector.getLoading(state))
+  	}
 }
 
 const mapDispatchToProps = (dispatch) => {

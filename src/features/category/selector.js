@@ -1,6 +1,7 @@
 import { MODULE_NAME } from './const'
 
 export const getBootstraped = (state) => state[MODULE_NAME].bootstraped;
+export const getLoading = (state) => state[MODULE_NAME].loading;
 
 export const getCategoryForm = (state) => state[MODULE_NAME].form;
 

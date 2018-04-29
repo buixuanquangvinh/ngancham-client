@@ -12,7 +12,7 @@ class TableList extends Component {
     const { room, tableList, currentTable } = this.props
   	return (
       <AppSection label='DANH SÁCH BÀN'>
-        <div className='row'>
+        <div className='row' style={{height:'298px',overflow:'auto'}}>
           {room.id?<div className='col-3 mb-2'><TableForm/></div>:null}
           {tableList.map((table)=>{
             return <div className='col-3 mb-2' key={table.id}><Table table={table} currentTable={currentTable}/></div>

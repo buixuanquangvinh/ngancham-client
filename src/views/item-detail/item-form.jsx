@@ -27,7 +27,7 @@ class ItemForm extends Component {
     const { readFile } = this
   	return (
       <div className='row'>
-        <div className='col-3'>
+        <div className='col-4'>
           <img 
             src={itemForm.item_img_url?itemForm.item_img_url:itemForm.file?itemForm.file:'http://visitcorralejo.com/wp/wp-content/themes/WPBoots/functions/facebook/img/default_image.png'} 
             style={{width:'100%',maxHeight:'400px',cursor:'pointer'}} 

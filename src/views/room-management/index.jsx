@@ -16,20 +16,20 @@ class RoomManagement extends Component {
 		const { currentRoom, currentTable } = this.props
 	  	return (
 	      <div className="row">
-	        <div className="col-2">
-	        	<RoomList/>
-	        </div>
 	        {currentRoom.id?
-		        <div className="col-5">
+		        <div className="col-6">
 		        	<TakeAbleOrderList/>
 		        	<TableList/>
 		        </div>:null
 		    }
 		    {currentRoom.id?
-		        <div className="col-5">
+		        <div className="col-6">
 					{currentTable.id?<TableDetail/>:<PendingOrderedItemList/>}	        	
 		        </div>:null
 	    	}
+	    	<div className="col-12">
+	        	<RoomList/>
+	        </div>
 	      </div>
 	    )
 	}

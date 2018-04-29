@@ -9,7 +9,7 @@ class TableForm extends Component {
 	render(){
     const { tableForm, room, edit, create } = this.props
   	return (
-      <AppModal id='table-form' label={<i className="fas fa-plus"></i>} height='200px'>
+      <AppModal id='table-form' label={<i className="fas fa-plus"></i>} height='150px'>
         <div className='row'>
           <div className='col-10'>
             <AppInput label='Số bàn' value={tableForm.table_number} onChange={(value)=>edit('table_number',value)}/>

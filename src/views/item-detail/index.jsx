@@ -17,7 +17,7 @@ class ItemDetail extends Component {
 		  	return (
 		      	<div className="row">
 		      		<div className="col-12"><ItemForm {...this.props}/></div>
-		        	<div className="col-3">
+		        	<div className="col-4">
 		        		<ItemChart {...this.props}/>
 		        	</div>
 		        	<div className='col-6'>

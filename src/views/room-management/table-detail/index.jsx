@@ -13,10 +13,9 @@ class TableDetail extends Component {
 		const { currentTable, orderedItems } = this.props
 	  	return (
 	  		<AppSection label={'BÀN '+currentTable.table_number}>
-		      	<div className='row'>
+		      	<div className='row' style={{height:'460px',overflow:'auto'}}>
 		      		{orderedItems.length?
 			      		<div className='col-12'>
-			      		
 			      			<OrderedItemList/>
 			      			<TableButtons/>
 			      		</div>:'không có hóa đơn nào'

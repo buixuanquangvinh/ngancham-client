@@ -6,9 +6,9 @@ class Room extends Component {
 
 	render(){
 		const { room, currentRoom, selectRoom } = this.props
-    let className = "mt-1 border rounded p-2"
+    let className = "border rounded p-2 text-center"
     if(currentRoom.id==room.id)
-      className = "mt-1 border rounded p-2 bg-primary"
+      className = "border rounded p-2 text-center bg-primary"
   	return (
       <div className={className} onClick={()=>selectRoom(room)}>
         {room.room_name}

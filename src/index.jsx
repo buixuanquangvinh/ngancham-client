@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import AppRouter from './router'
 import store from './store'
 
-import Printer from 'components/printer'
+//import Printer from 'components/printer'
 
 if(document.getElementById('app'))
 ReactDOM.render(
@@ -15,5 +15,5 @@ ReactDOM.render(
 	document.getElementById('app')
 )
 
-if(document.getElementById('print'))
-ReactDOM.render(<Printer/>,document.getElementById('print'))
+//if(document.getElementById('print'))
+//ReactDOM.render(<Printer/>,document.getElementById('print'))

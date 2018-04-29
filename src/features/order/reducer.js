@@ -72,9 +72,9 @@ export default function reducer(state = initialState, action) {
     }
 
     case ActionType.SAVE_ORDERED_ITEM:
-      return {...state}
+      return {...state, loading: true}
     case ActionType.SAVE_ORDERED_ITEM_SUCCESSED:
-      return {...state}
+      return {...state, loading: false}
 
     case ActionType.SOCKET_UPDATE:{
       const { orders, ordered_items } = state

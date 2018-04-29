@@ -13,7 +13,7 @@ class Login extends Component {
           <div className='col-4'></div>
           <div className='col-4 card card-body' style={{marginTop:'25%'}}>
             <AppInput label='username' value={form.user_name} onChange={(value)=>edit('user_name',value)}/>
-            <AppInput label='password' value={form.password} onChange={(value)=>edit('password',value)}/>
+            <AppInput label='password' type='password' value={form.password} onChange={(value)=>edit('password',value)}/>
             <button className='btn btn-primary' onClick={()=>login(form)}>Login</button>
           </div>
           <div className='col-4'></div>

@@ -10,24 +10,19 @@ class OrderItem extends Component {
 	render(){
 		const { orderItem, prices, modifiers, edit, remove } = this.props
   	return (
-      <div className="media mt-1 border rounded p-1">
-        <img className="align-self-center mr-3" style={{width:'100px',height:'100px'}} src={orderItem.item_img_url}/>
-        <div className="media-body pt-4">
-          <div className='row'>
-            <div className='col-2'><h5>{orderItem.item_name}</h5></div>
-            <div className='col-3'>
-              <AppSelect label='prices' value={orderItem.item_price} options={prices} onChange={(value)=>edit(orderItem.temp_id,'item_price',value)}/>
-            </div>
-            <div className='col-4'>
-              <AppMultiSelect label='modifiers' value={orderItem.item_modifiers} options={modifiers} onChange={(value)=>edit(orderItem.temp_id,'item_modifiers',value)}/>
-            </div>
-            <div className='col-3'>
-              <button className='btn btn-light' onClick={orderItem.number_of_item>1?()=>edit(orderItem.temp_id,'number_of_item',orderItem.number_of_item-1):null}><i className='fas fa-minus'/></button>&nbsp;
-              {orderItem.number_of_item}&nbsp;
-              <button className='btn btn-light' onClick={()=>edit(orderItem.temp_id,'number_of_item',orderItem.number_of_item+1)}><i className='fas fa-plus'/></button>&nbsp;&nbsp;&nbsp;
-              <button className='btn btn-danger' onClick={()=>remove(orderItem)}><i className='fas fa-times'/></button>
-            </div>
-          </div>
+      <div className='d-table-row'>
+        <div className='d-table-cell p-1'><h5>{orderItem.item_name}</h5></div>
+        <div className='d-table-cell p-1'>
+          <AppSelect label='prices' value={orderItem.item_price} options={prices} onChange={(value)=>edit(orderItem.temp_id,'item_price',value)} compact={true}/>
+        </div>
+        <div className='d-table-cell p-1'>
+          <AppMultiSelect label='modifiers' value={orderItem.item_modifiers} options={modifiers} onChange={(value)=>edit(orderItem.temp_id,'item_modifiers',value)} compact={true}/>
+        </div>
+        <div className='d-table-cell p-1'>
+          <button className='btn btn-light' onClick={orderItem.number_of_item>1?()=>edit(orderItem.temp_id,'number_of_item',orderItem.number_of_item-1):null}><i className='fas fa-minus'/></button>&nbsp;
+          {orderItem.number_of_item}&nbsp;
+          <button className='btn btn-light' onClick={()=>edit(orderItem.temp_id,'number_of_item',orderItem.number_of_item+1)}><i className='fas fa-plus'/></button>&nbsp;&nbsp;&nbsp;
+          <button className='btn btn-danger' onClick={()=>remove(orderItem)}><i className='fas fa-times'/></button>
         </div>
       </div>
     )

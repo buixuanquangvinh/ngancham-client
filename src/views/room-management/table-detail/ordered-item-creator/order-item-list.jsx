@@ -27,9 +27,11 @@ class OrderItemList extends Component {
   	return (
       <div className='row'>
         <div className='col-12'><button className='btn btn-primary' onClick={preProcess}>CREATE</button></div>
-        {form.order_items.map((orderItem)=>{
-          return <div className='col-12' key={orderItem.temp_id}><OrderItem orderItem={orderItem}/></div>
-        })}
+        <div className='col-12 d-table'>
+          {form.order_items.map((orderItem)=>{
+            return <OrderItem key={orderItem.temp_id} orderItem={orderItem}/>
+          })}
+        </div>
       </div>
     )
 	}

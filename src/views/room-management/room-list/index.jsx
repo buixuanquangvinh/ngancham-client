@@ -12,9 +12,9 @@ class RoomList extends Component {
   	return (
       <AppSection label='DANH SÁCH PHÒNG'>
         <div className='row'>
-          <div className='col-12'><RoomForm/></div>
+          <div className='col-2'><RoomForm/></div>
           {roomList.map((room)=>{
-            return <div className='col-12' key={room.id}><Room room={room}/></div>
+            return <div className='col-2' key={room.id}><Room room={room}/></div>
           })}
         </div>
       </AppSection>

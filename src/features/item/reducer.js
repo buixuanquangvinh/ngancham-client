@@ -103,7 +103,7 @@ export default function reducer(state = initialState, action) {
     }
     
     case ActionType.SET_ERROR:
-      return {...state,error:action.payload}
+      return {...state, loading:false,error:action.payload}
     default:
       return state
   }

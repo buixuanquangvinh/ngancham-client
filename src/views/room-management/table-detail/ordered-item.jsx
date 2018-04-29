@@ -24,8 +24,8 @@ class OrderedItem extends Component {
         </div>
         <div className='d-table-cell p-1'>{orderedItem.number_of_item}</div>
         <div className='d-table-cell p-1'>
-          <button className='btn btn-success' onClick={()=>saveOrderedItem({...orderedItem,status:'done'})}>confirm</button>&nbsp;
-          <button className='btn btn-danger' onClick={()=>saveOrderedItem({...orderedItem,status:'cancel'})}>cancel</button>
+          <button className='btn btn-success' onClick={()=>saveOrderedItem({...orderedItem,status:'done'})}><i className="fas fa-check"></i></button>&nbsp;
+          <button className='btn btn-danger' onClick={()=>saveOrderedItem({...orderedItem,status:'cancel'})}><i className="fas fa-times"></i></button>
         </div>
       </div>
     )
