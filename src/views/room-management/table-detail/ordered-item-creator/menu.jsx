@@ -22,7 +22,7 @@ class ItemList extends Component {
   	return (
       <div className='row'>
         <div className='col-12'><AppSelect label='Category' value={category} options={categoryOption} onChange={(value)=>this.setState({category:value})}/></div>
-        {itemList.map((item)=>{
+        {itemList.filter((item)=>category?item.category_id==category:true).map((item)=>{
           return <div className='col-6' key={item.id} onClick={()=>addOrderItem(item)}><Item item={item}/></div>
         })}
       </div>

@@ -28,13 +28,20 @@ class AppRouter extends Component{
 	}
 
 	connectSocket = ()=>{
-	    const { socketUpdate } = this.props
+	    const { bootstrap, socketUpdate } = this.props
+		const { connectSocket } = this
 	    let socket = new WebSocket("wss://ngancham.herokuapp.com/cable")
 
 	    socket.onopen = function (event) {
 	      	socket.send(JSON.stringify({"command":"subscribe","identifier":"{\"channel\":\"OrderChannel\"}"}))
 	    }
-
+		
+		socket.onclose = function(event) {
+			console.log('Socket is closed. Reconnect will be attempted in 1 second.', event.reason);
+			connectSocket()
+			bootstrap()
+		}
+		
 	    socket.onmessage = function (event) {
 	      	let data = JSON.parse(event.data)
 	      	if(data.message && data.message.action_type){
