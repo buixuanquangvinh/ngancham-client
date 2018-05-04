@@ -10,7 +10,7 @@ var config = {
   ],
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'desktop.bundle.js'
   },
   devtool: 'cheap-module-source-map',
   plugins: [
@@ -25,6 +25,7 @@ var config = {
     extensions: ['.js', '.jsx', '.css'],
 	  alias: {
 	    request: path.resolve(APP_DIR, 'request/'),
+      ulti: path.resolve(APP_DIR, 'ulti.desktop/'),
       features: path.resolve(APP_DIR, 'features/'),
       components: path.resolve(APP_DIR, 'components/'),
       views: path.resolve(APP_DIR, 'views/')

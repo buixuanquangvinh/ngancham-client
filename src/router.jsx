@@ -8,17 +8,19 @@ import { CategorySelector } from 'features/category'
 import { ItemSelector } from 'features/item'
 import { LoginSelector } from 'features/login'
 import { OrderSelector, OrderAction } from 'features/order'
+import { ReportSelector } from 'features/report'
 import { RoomSelector } from 'features/room'
 import { TableSelector } from 'features/table'
 
-import { Login, Dashboard, CategoryManagement, ItemManagement, ItemDetail, OrderCreator, RoomManagement } from 'views'
+import { Login, Dashboard, CategoryManagement, ItemManagement, ItemDetail, OrderCreator, Report, RoomManagement, UserManagement } from 'views'
 
 import { AppLoadingOverlay } from 'components/common-ui'
+import { isRole } from 'ulti'
 
 class AppRouter extends Component{
 
 	componentDidMount(){
-		if(localStorage.token){
+		if(localStorage.token && localStorage.user){
 			this.props.bootstrap()
 			this.connectSocket()
 			window.location.href = '#/'
@@ -28,18 +30,18 @@ class AppRouter extends Component{
 	}
 
 	connectSocket = ()=>{
-	    const { bootstrap, socketUpdate } = this.props
+	    const { synchronize, socketUpdate } = this.props
 		const { connectSocket } = this
 	    let socket = new WebSocket("wss://ngancham.herokuapp.com/cable")
+	    //let socket = new WebSocket("ws://localhost:3000/cable")
 
 	    socket.onopen = function (event) {
 	      	socket.send(JSON.stringify({"command":"subscribe","identifier":"{\"channel\":\"OrderChannel\"}"}))
+	      	setTimeout(()=>{synchronize()},2000)
 	    }
 		
 		socket.onclose = function(event) {
-			console.log('Socket is closed. Reconnect will be attempted in 1 second.', event.reason);
 			connectSocket()
-			bootstrap()
 		}
 		
 	    socket.onmessage = function (event) {
@@ -55,15 +57,19 @@ class AppRouter extends Component{
 		return(
 			<AppLoadingOverlay loading={loading}>
 				<Router history={hashHistory}>
+					{(localStorage.token && localStorage.user)?
 				    <Route path="/" component={App}>
 				    	<IndexRoute component={Dashboard}/>
-				    	<Route path="category" component={CategoryManagement}/>
-				    	<Route path="item" component={ItemManagement}/>
-				    	<Route path="item/:id" component={ItemDetail}/>
-				    	<Route path="order-creator" component={OrderCreator}/>
-				    	<Route path="room" component={RoomManagement}/>
-				    </Route>
+				    	{isRole('admin')?<Route path="category" component={CategoryManagement}/>:null}
+				    	{isRole('admin')?<Route path="item" component={ItemManagement}/>:null}
+				    	{isRole('admin')?<Route path="item/:id" component={ItemDetail}/>:null}
+				    	{isRole('admin','manager')?<Route path="order-creator" component={OrderCreator}/>:null}
+				    	{isRole('admin')?<Route path="report" component={Report}/>:null}
+				    	{isRole('admin','manager')?<Route path="room" component={RoomManagement}/>:null}
+				    	{isRole('admin')?<Route path="user" component={UserManagement}/>:null}
+				    </Route>:
 				    <Route path="login" component={Login}/>
+					}
 			 	</Router>
 		 	</AppLoadingOverlay>
 		)
@@ -72,14 +78,15 @@ class AppRouter extends Component{
 
 const mapStateToProps = (state) => {
   	return {
-  		loading:(CategorySelector.getLoading(state) || ItemSelector.getLoading(state) || LoginSelector.getLoading(state) || OrderSelector.getLoading(state) || RoomSelector.getLoading(state) || TableSelector.getLoading(state))
+  		loading:(CategorySelector.getLoading(state) || ItemSelector.getLoading(state) || LoginSelector.getLoading(state) || OrderSelector.getLoading(state) || ReportSelector.getLoading(state) || RoomSelector.getLoading(state) || TableSelector.getLoading(state))
   	}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
   	bootstrap: ()=> dispatch({type:'BOOTSTRAP'}),
-  	socketUpdate: (data)=> dispatch({ type:OrderAction.SOCKET_UPDATE, payload:data }),
+  	synchronize: (data)=> dispatch({ type:OrderAction.SYNCHRONIZE }),
+  	socketUpdate: (data)=> dispatch({ type:OrderAction.SOCKET_UPDATE, payload:data })
   }
 }
 

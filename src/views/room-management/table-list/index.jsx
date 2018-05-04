@@ -6,6 +6,8 @@ import { AppSection, AppDropable } from 'components/common-ui'
 import Table from './table'
 import TableForm from './table-form'
 
+import { isRole } from 'ulti'
+
 class TableList extends Component {
 
 	render(){
@@ -13,7 +15,7 @@ class TableList extends Component {
   	return (
       <AppSection label='DANH SÁCH BÀN'>
         <div className='row' style={{height:'298px',overflow:'auto'}}>
-          {room.id?<div className='col-3 mb-2'><TableForm/></div>:null}
+          {(room.id && isRole('admin'))?<div className='col-3 mb-2'><TableForm/></div>:null}
           {tableList.map((table)=>{
             return <div className='col-3 mb-2' key={table.id}><Table table={table} currentTable={currentTable}/></div>
           })}

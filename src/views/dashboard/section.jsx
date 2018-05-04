@@ -8,8 +8,8 @@ export default class Section extends Component {
 	  		<a href={url}>
 		      	<div className="border rounded p-1 mt-2 text-center" style={{height:'100px',lineHeight:'90px'}}>
 		        	<div className='row'>
-		        		<div className='col-3' style={{fontSize:'40px'}}>{icon}</div>
-		        		<div className='col-9' style={{fontSize:'30px'}}>{label}</div>
+		        		<div className='col-2' style={{fontSize:'40px'}}>{icon}</div>
+		        		<div className='col-10' style={{fontSize:'30px'}}>{label}</div>
 		        	</div>
 		      	</div>
 	      </a>

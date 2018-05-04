@@ -8,15 +8,19 @@ class Login extends Component {
   render(){
     const { form, edit, login } = this.props
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className='col-4'></div>
-          <div className='col-4 card card-body' style={{marginTop:'25%'}}>
+      <div className="container-fluid" style={{overflow:'hidden',height:'100vh'}}>
+        <div className="row" style={{marginTop:'20%'}}>
+          <div className='col-4 text-right pt-5' style={{paddingRight:'100px'}}>
+            <div className='d-inline-block bubble' style={{width:'80px'}}></div>
+          </div>
+          <div className='col-4 card card-body'>
             <AppInput label='username' value={form.user_name} onChange={(value)=>edit('user_name',value)}/>
             <AppInput label='password' type='password' value={form.password} onChange={(value)=>edit('password',value)}/>
             <button className='btn btn-primary' onClick={()=>login(form)}>Login</button>
           </div>
-          <div className='col-4'></div>
+          <div className='col-4 text-left pt-5' style={{paddingLeft:'100px'}}>
+            <div className='d-inline-block bubble' style={{width:'80px'}}></div>
+          </div>
         </div>
       </div>
     )

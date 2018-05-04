@@ -6,7 +6,7 @@
     <meta name=viewport content="width=device-width,initial-scale=1, maximum-scale=1.0, user-scalable=no"">
     <title>Ngancham</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/bootstrap.min.css">
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="./vendor/jquery.min.js"></script>
     <script src="./vendor/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
 <body class='bg-light'>
   <div id="app"></div>
 </body>
-<script src="./dist/bundle.js" ></script>
+<script src="./dist/web.bundle.js" ></script>
 <style>
 /* need for select index to work */
 body{
@@ -25,6 +25,29 @@ body{
 .input-group .form-control, .input-group-btn .btn { z-index: inherit !important; }
 .form-control {
   min-height:34px;
+}
+@keyframes bubble_animation {
+    0% {
+      opacity: 0;
+      transform: scale(1.0) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(2.0) rotate(360deg);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.0) rotate(720deg);
+    }
+}
+/* The element to apply the animation to */
+.bubble{
+    min-width: 80px;
+    min-height: 80px;
+    border:solid 1px;
+    animation-name: bubble_animation;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
 }
 </style>
 </html>

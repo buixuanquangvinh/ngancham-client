@@ -1,6 +1,8 @@
 import 'whatwg-fetch'
+import Swal from 'sweetalert2'
 
 const rootPath = 'https://ngancham.herokuapp.com/'
+const rootPath = 'http://localhost:3000/'
 export default function request(path,option = {}){
 
 	let defaultOption = {
@@ -18,12 +20,13 @@ export default function request(path,option = {}){
 		else
 			return response.json()
 	}).then((result)=>{
-		if(result.status!=200)
+		if(result.status!=200){
 			return Promise.reject({message: result.responseMessage})
+		}
 		else
 			return result.responseData
 	}).catch(function(ex) {
-		console.log(ex.message)
-		return Promise.reject(ex)
+		Swal('ERROR',ex.message, 'error')
+		return Promise.reject(ex.message)
 	})
 }

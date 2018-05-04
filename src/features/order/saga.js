@@ -15,6 +15,19 @@ function* bootstrap(action) {
   }
 }
 
+function* synchronize(action) {
+  try {
+    const orders = yield call(request,'/orders')
+    const ordered_items = yield call(request,'/ordered_items')
+    let new_ordered_items = ordered_items.map((ordered_item)=>{
+      return {...ordered_item,item_modifiers:JSON.parse(ordered_item.item_modifiers)}
+    })
+    yield put({ type:ActionType.BOOTSTRAP_SUCCESSED, payload:{ orders:orders, ordered_items:new_ordered_items } })
+  } catch (e) {
+    yield put({ type:ActionType.SET_ERROR, payload:e.message })
+  }
+}
+
 function* createOrder(action) {
   try {
     const payload = yield call(request,'/orders',{ method:'POST', body:JSON.stringify(action.payload) })
@@ -53,6 +66,7 @@ function* saveOrderedItem(action) {
 
 function* saga() {
   yield takeLatest(ActionType.BOOTSTRAP, bootstrap)
+  yield takeLatest(ActionType.SYNCHRONIZE, synchronize)
   yield takeLatest(ActionType.CREATE_ORDER, createOrder)
   yield takeLatest(ActionType.SAVE_ORDER, saveOrder)
   yield takeLatest(ActionType.CREATE_ORDERED_ITEM, createOrderedItem)

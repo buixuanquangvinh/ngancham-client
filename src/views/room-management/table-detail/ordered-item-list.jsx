@@ -12,10 +12,12 @@ class OrderedItemList extends Component {
     const { orderedItems } = this.props
     let sum = 0
     orderedItems.map((ordered_item)=>{
-      sum += ordered_item.item_price*ordered_item.number_of_item
-      ordered_item.item_modifiers.map((modifier)=>{
-        sum += modifier.item_modifier_price
-      })
+      if(ordered_item.status=='done'){
+        sum += ordered_item.item_price*ordered_item.number_of_item
+        ordered_item.item_modifiers.map((modifier)=>{
+          sum += modifier.item_modifier_price
+        })
+      }
     })
     return sum
   }

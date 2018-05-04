@@ -1,3 +1,4 @@
+export { default as AppCurrency } from './app-currency'
 export { default as AppDatePicker } from './app-date-picker'
 export { default as AppDateRangePicker } from './app-date-range-picker'
 export { default as AppDragable } from './app-dragable'

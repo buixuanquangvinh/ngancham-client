@@ -1,6 +1,6 @@
-import { ipcRenderer } from 'electron'
 import ActionType from './action'
 import { DEFAULT_TABLE_FORM } from './const'
+import { printReceipt } from 'ulti'
 
 const initialState = {
   loading:false,
@@ -46,7 +46,7 @@ export default function reducer(state = initialState, action) {
     case ActionType.CHECKOUT_TABLE:
       return {...state, loading:true}
     case ActionType.CHECKOUT_TABLE_SUCCESSED:{
-      ipcRenderer.send('print',action.payload)
+      printReceipt(action.payload)
       return {...state, loading:false}
     }
 

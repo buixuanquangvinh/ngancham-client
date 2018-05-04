@@ -1,6 +1,6 @@
-import { ipcRenderer } from 'electron'
 import React, { Component } from 'react'
-import numeral from 'numeral'
+import { AppCurrency } from 'components/common-ui'
+import { printReceiptListener, beginPrintReceipt } from 'ulti'
 
 export default class Printer extends Component {
 
@@ -14,12 +14,9 @@ export default class Printer extends Component {
 	}
 
 	componentDidMount(){
-		ipcRenderer.on("print-process", (event, arg) => {
-			this.setState(arg,()=>{
-				console.log(arg)
-				ipcRenderer.send("ready-to-print")
-			})
-        })
+		printReceiptListener((data)=>{
+			this.setState(data,()=>beginPrintReceipt())
+		})
 	}
 
 	render(){
@@ -28,7 +25,7 @@ export default class Printer extends Component {
 		archivedOrders.map((order)=>sum_total+=order.total_amount)
 	  	return (
 			<div>
-				<h2 style={{textAlign:'center'}}>{isNaN(sum_total)?'Hóa đơn gọi đồ':'Hóa đơn thanh toán'}</h2>
+				<h2 style={{textAlign:'center'}}>Hóa đơn thanh toán</h2>
 				<h3 style={{textAlign:'center'}}>NGAN CHẬM</h3>
 				<h4 style={{textAlign:'center'}}>
 					Hóa đơn số: {archivedOrders.map((order)=>order.order_number+' ')} {table.id?"Bàn số: "+table.table_number:null}
@@ -57,10 +54,10 @@ export default class Printer extends Component {
 							let total = sum*ordered_item.number_of_item
 							return(
 								<tr key={ordered_item.id}>
-									<td>{name}</td>
-									<td>{numeral(sum).format('0,0')}</td>
+									<td style={{textAlign:'left'}}>{name}</td>
+									<td><AppCurrency>{sum}</AppCurrency></td>
 									<td>{ordered_item.number_of_item}</td>
-									<td>{numeral(total).format('0,0')}</td>
+									<td><AppCurrency>{total}</AppCurrency>}</td>
 								</tr>
 							)
 						})}
@@ -68,7 +65,7 @@ export default class Printer extends Component {
 							<td></td>
 							<td></td>
 							<td></td>
-							<td>{isNaN(sum_total)?null:numeral(sum_total).format('0,0')}</td>
+							<td><AppCurrency>{sum_total}</AppCurrency></td>
 						</tr>
 					</tbody>
 				</table>

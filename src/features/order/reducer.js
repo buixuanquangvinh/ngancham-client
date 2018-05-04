@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron'
 import ActionType from './action'
 import uniqueId from 'lodash/uniqueId'
 
@@ -26,13 +25,11 @@ export default function reducer(state = initialState, action) {
     case ActionType.CREATE_ORDER:
       return {...state, loading: true}
     case ActionType.CREATE_ORDER_SUCCESSED:
-      ipcRenderer.send('print',action.payload)
       return {...state, loading: false}
 
     case ActionType.CREATE_ORDERED_ITEM:
       return {...state, loading: true}
     case ActionType.CREATE_ORDERED_ITEM_SUCCESSED:
-      ipcRenderer.send('print',action.payload)
       return {...state, loading: false}
 
     case ActionType.SAVE_ORDER:

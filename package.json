@@ -4,8 +4,10 @@
   "version": "1.0.0",
   "description": "ngancham react ui",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "build_production": "webpack -p --config webpack.config.js",
+    "build_web": "webpack --config webpack.web.config.js",
+    "build_web_production": "webpack -p --config webpack.web.config.js",
+    "build_desktop": "webpack --config webpack.desktop.config.js",
+    "build_desktop_production": "webpack -p --config webpack.desktop.config.js",
     "server": "http-server"
   },
   "author": "bui xuan quang vinh",
