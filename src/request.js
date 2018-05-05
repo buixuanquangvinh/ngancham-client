@@ -2,7 +2,7 @@ import 'whatwg-fetch'
 import Swal from 'sweetalert2'
 
 const rootPath = 'https://ngancham.herokuapp.com/'
-const rootPath = 'http://localhost:3000/'
+//const rootPath = 'http://localhost:3000/'
 export default function request(path,option = {}){
 
 	let defaultOption = {
