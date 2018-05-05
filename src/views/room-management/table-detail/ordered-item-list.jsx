@@ -5,6 +5,7 @@ import { TableSelector } from 'features/table'
 import { OrderSelector } from 'features/order'
 
 import OrderedItem from './ordered-item'
+import { AppCurrency } from 'components/common-ui'
 
 class OrderedItemList extends Component {
   
@@ -12,12 +13,14 @@ class OrderedItemList extends Component {
     const { orderedItems } = this.props
     let sum = 0
     orderedItems.map((ordered_item)=>{
-      if(ordered_item.status=='done'){
-        sum += ordered_item.item_price*ordered_item.number_of_item
-        ordered_item.item_modifiers.map((modifier)=>{
-          sum += modifier.item_modifier_price
-        })
-      }
+		let totalsum = 0
+		if(ordered_item.status=='done'){
+			totalsum += ordered_item.item_price
+			ordered_item.item_modifiers.map((modifier)=>{
+				totalsum += modifier.item_modifier_price
+			})
+			sum += totalsum*ordered_item.number_of_item
+		}
     })
     return sum
   }
@@ -32,7 +35,6 @@ class OrderedItemList extends Component {
             <div className='d-table-cell p-1'></div>
             <div className='d-table-cell p-1'>Tên</div>
             <div className='d-table-cell p-1'>Giá</div>
-            <div className='d-table-cell p-1'></div>
             <div className='d-table-cell p-1'>#</div>
             <div className='d-table-cell p-1'></div>
           </div>
@@ -42,8 +44,7 @@ class OrderedItemList extends Component {
           <div className='d-table-row text-center'>
             <div className='d-table-cell p-1'></div>
             <div className='d-table-cell p-1'></div>
-            <div className='d-table-cell p-1'>{calculateSum()}</div>
-            <div className='d-table-cell p-1'></div>
+            <div className='d-table-cell p-1'><AppCurrency>{calculateSum()}</AppCurrency></div>
             <div className='d-table-cell p-1'></div>
             <div className='d-table-cell p-1'></div>
           </div>

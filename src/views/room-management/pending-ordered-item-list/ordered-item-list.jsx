@@ -19,7 +19,6 @@ class OrderedItemList extends Component {
             <div className='d-table-cell p-1'>Bàn</div>
             <div className='d-table-cell p-1'>Tên</div>
             <div className='d-table-cell p-1'>Giá</div>
-            <div className='d-table-cell p-1'></div>
             <div className='d-table-cell p-1'>#</div>
             <div className='d-table-cell p-1'></div>
           </div>

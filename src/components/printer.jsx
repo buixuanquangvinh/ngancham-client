@@ -57,7 +57,7 @@ export default class Printer extends Component {
 									<td style={{textAlign:'left'}}>{name}</td>
 									<td><AppCurrency>{sum}</AppCurrency></td>
 									<td>{ordered_item.number_of_item}</td>
-									<td><AppCurrency>{total}</AppCurrency>}</td>
+									<td><AppCurrency>{total}</AppCurrency></td>
 								</tr>
 							)
 						})}
