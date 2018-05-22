@@ -1,12 +1,10 @@
 import ActionType from './action'
-import { DEFAULT_CATEGORY_FORM } from './const'
 
 const initialState = {
   loading:false,
   bootstraped:false,
   error:'',
   categories:[],
-  form:{...DEFAULT_CATEGORY_FORM}
 }
 
 export default function reducer(state = initialState, action) {
@@ -29,12 +27,6 @@ export default function reducer(state = initialState, action) {
         else return category
       })
       return {...state, loading:false, categories:new_categories}
-    }
-
-    case ActionType.EDIT_CATEGORY_FORM:{
-      const { key, value } = action.payload
-      const { form } = state
-      return {...state,form:{...form,[key]:value}}
     }
 
     case ActionType.SET_ERROR:

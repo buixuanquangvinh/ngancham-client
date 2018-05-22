@@ -1,18 +1,14 @@
+import Swal from 'sweetalert2'
 import ActionType from './action'
-import uniqueId from 'lodash/uniqueId'
+import { printReceipt } from 'ulti'
 
 const initialState = {
   bootstraped:false,
   loading: false,
   error:'',
-  
+  currentOrder:{},
   orders: [],
   ordered_items: [],
-
-  form:{
-    order_number:'',
-    order_items: []
-  }
 }
 
 export default function reducer(state = initialState, action) {
@@ -25,9 +21,11 @@ export default function reducer(state = initialState, action) {
     case ActionType.CREATE_ORDER:
       return {...state, loading: true}
     case ActionType.CREATE_ORDER_SUCCESSED:
+      Swal('THÀNH CÔNG','đã tạo order', 'success')
       return {...state, loading: false}
 
     case ActionType.CREATE_ORDERED_ITEM:
+      Swal('THÀNH CÔNG','đã thêm đồ', 'success')
       return {...state, loading: true}
     case ActionType.CREATE_ORDERED_ITEM_SUCCESSED:
       return {...state, loading: false}
@@ -37,43 +35,15 @@ export default function reducer(state = initialState, action) {
     case ActionType.SAVE_ORDER_SUCCESSED:
       return {...state, loading: false}
 
-    case ActionType.EDIT_ORDER_FORM:{
-      const { form } = state
-      const { key, value } = action.payload
-      return {...state,form:{...form,[key]:value}} 
+    case ActionType.SELECT_ORDER:{
+      return {...state,currentOrder:action.payload}
     }
 
-    case ActionType.ADD_ORDER_ITEM:{
-      const { form } = state
-      let order_item = {
-        ...action.payload,
-        temp_id:uniqueId('order_item'),
-        number_of_item:1,
-        item_modifiers:[],
-        status:'pending'
-      }
-      return {...state, form:{...form,order_items:[...form.order_items,order_item]} }
-    }
-
-    case ActionType.EDIT_ORDER_ITEM:{
-      const { temp_id, key, value } = action.payload
-      const { order_items } = state.form
-      let new_order_items = order_items.map((order_item)=>{
-        if(order_item.temp_id==temp_id)
-          return {...order_item,[key]:value}
-        else return order_item
-      })
-      return {...state, form:{...state.form,order_items:new_order_items}}
-    }
-
-    case ActionType.REMOVE_ORDER_ITEM:{
-      const { form } = state
-      return {...state, form:{...form,order_items: form.order_items.filter((order_item)=>order_item.temp_id!=action.payload.temp_id)} }
-    }
-
-    case ActionType.CLEAR_ORDER_ITEM:{
-      const { form } = state
-      return {...state, form:{...form,order_items:[]} }
+    case ActionType.CHECKOUT_ORDER:
+      return {...state, loading:true}
+    case ActionType.CHECKOUT_ORDER_SUCCESSED:{
+      printReceipt(action.payload)
+      return {...state, loading:false}
     }
 
     case ActionType.SAVE_ORDERED_ITEM:
@@ -114,11 +84,11 @@ export default function reducer(state = initialState, action) {
         })
         return {...state,ordered_items:new_ordered_items}
       }
-      if(action_type=='checkout_table'){
-        const new_orders = orders.filter((order)=>order.table_id != data.table.id)
-        const new_order_ids = new_orders.map((order)=>order.id)
-        const new_ordered_items = ordered_items.filter((ordered_item)=>new_order_ids.indexOf(ordered_item.order_id) >=0)
-        return {...state, orders:new_orders, ordered_items:new_ordered_items}
+      if(action_type=='checkout_order'){
+        console.log(data)
+        const new_orders = orders.filter((order)=>order.id != data.order.id)
+        const new_ordered_items = ordered_items.filter((ordered_item)=> ordered_item.order_id != data.order.id)
+        return {...state, orders:new_orders, ordered_items:new_ordered_items,currentOrder:{}}
       }
     }
 

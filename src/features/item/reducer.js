@@ -1,5 +1,4 @@
 import ActionType from './action'
-import { DEFAULT_ITEM_FORM, DEFAULT_ITEM_PRICE_FORM, DEFAULT_ITEM_MODIFIER_FORM } from './const'
 
 const initialState = {
   bootstraped:false,
@@ -7,10 +6,7 @@ const initialState = {
   error:'',
   items:[],
   item_prices:[],
-  item_modifiers:[],
-  item_form:{...DEFAULT_ITEM_FORM},
-  item_price_form:{...DEFAULT_ITEM_PRICE_FORM},
-  item_modifier_form:{...DEFAULT_ITEM_MODIFIER_FORM}
+  item_modifiers:[]
 }
 
 export default function reducer(state = initialState, action) {
@@ -83,24 +79,6 @@ export default function reducer(state = initialState, action) {
     case ActionType.REMOVE_ITEM_MODIFIER_SUCCESSED:
       return {...state, loading:false, item_modifiers:state.item_modifiers.filter((modifier)=> modifier.id!=action.payload.id)}
     //---------------------------------------------------------------------------------------------------
-    
-    case ActionType.EDIT_ITEM_FORM:{
-      const { item_form } = state
-      const { key, value } = action.payload
-      return {...state,item_form:{...item_form,[key]:value}} 
-    }
-
-    case ActionType.EDIT_ITEM_PRICE_FORM:{
-      const { item_price_form } = state
-      const { key, value } = action.payload
-      return {...state,item_price_form:{...item_price_form,[key]:value}} 
-    }
-
-    case ActionType.EDIT_ITEM_MODIFIER_FORM:{
-      const { item_modifier_form } = state
-      const { key, value } = action.payload
-      return {...state,item_modifier_form:{...item_modifier_form,[key]:value}} 
-    }
     
     case ActionType.SET_ERROR:
       return {...state, loading:false,error:action.payload}

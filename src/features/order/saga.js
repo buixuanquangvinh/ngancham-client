@@ -46,6 +46,15 @@ function* saveOrder(action) {
   }
 }
 
+function* checkoutOrder(action) {
+  try {
+    const payload = yield call(request,'/orders/'+action.payload.id,{ method:'DELETE' })
+    yield put({ type: ActionType.CHECKOUT_ORDER_SUCCESSED, payload: payload })
+  } catch (e) {
+    yield put({ type: ActionType.SET_ERROR, payload: e.message})
+  }
+}
+
 function* createOrderedItem(action) {
   try {
     const payload = yield call(request,'/ordered_items',{ method:'POST', body:JSON.stringify(action.payload) })
@@ -69,6 +78,7 @@ function* saga() {
   yield takeLatest(ActionType.SYNCHRONIZE, synchronize)
   yield takeLatest(ActionType.CREATE_ORDER, createOrder)
   yield takeLatest(ActionType.SAVE_ORDER, saveOrder)
+  yield takeLatest(ActionType.CHECKOUT_ORDER, checkoutOrder)
   yield takeLatest(ActionType.CREATE_ORDERED_ITEM, createOrderedItem)
   yield takeLatest(ActionType.SAVE_ORDERED_ITEM, saveOrderedItem)
 }

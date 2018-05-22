@@ -6,7 +6,6 @@ import { LoginSaga } from 'features/login'
 import { OrderSaga } from 'features/order'
 import { ReportSaga } from 'features/report'
 import { RoomSaga } from 'features/room'
-import { TableSaga } from 'features/table'
 import { UserSaga } from 'features/user'
 
 export default function* rootSaga() {
@@ -18,7 +17,6 @@ export default function* rootSaga() {
     		fork(OrderSaga),
         fork(ReportSaga),
     		fork(RoomSaga),
-    		fork(TableSaga),
         fork(UserSaga)
   		]
   	}catch(e){console.log(e)}

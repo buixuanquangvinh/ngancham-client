@@ -10,9 +10,8 @@ import { LoginSelector } from 'features/login'
 import { OrderSelector, OrderAction } from 'features/order'
 import { ReportSelector } from 'features/report'
 import { RoomSelector } from 'features/room'
-import { TableSelector } from 'features/table'
 
-import { Login, Dashboard, CategoryManagement, ItemManagement, ItemDetail, OrderCreator, Report, RoomManagement, UserManagement } from 'views'
+import { Login, Dashboard, CategoryManagement, ItemManagement, ItemDetail, OrderCreator, Report, RoomDetail, RoomManagement, UserManagement, KitchenManagement } from 'views'
 
 import { AppLoadingOverlay } from 'components/common-ui'
 import { isRole } from 'ulti'
@@ -65,7 +64,9 @@ class AppRouter extends Component{
 				    	{isRole('admin')?<Route path="item/:id" component={ItemDetail}/>:null}
 				    	{isRole('admin','manager')?<Route path="order-creator" component={OrderCreator}/>:null}
 				    	{isRole('admin')?<Route path="report" component={Report}/>:null}
+				    	{isRole('admin','manager')?<Route path="kitchen" component={KitchenManagement}/>:null}
 				    	{isRole('admin','manager')?<Route path="room" component={RoomManagement}/>:null}
+				    	{isRole('admin','manager')?<Route path="room/:id" component={RoomDetail}/>:null}
 				    	{isRole('admin')?<Route path="user" component={UserManagement}/>:null}
 				    </Route>:
 				    <Route path="login" component={Login}/>
@@ -78,7 +79,7 @@ class AppRouter extends Component{
 
 const mapStateToProps = (state) => {
   	return {
-  		loading:(CategorySelector.getLoading(state) || ItemSelector.getLoading(state) || LoginSelector.getLoading(state) || OrderSelector.getLoading(state) || ReportSelector.getLoading(state) || RoomSelector.getLoading(state) || TableSelector.getLoading(state))
+  		loading:(CategorySelector.getLoading(state) || ItemSelector.getLoading(state) || LoginSelector.getLoading(state) || OrderSelector.getLoading(state) || ReportSelector.getLoading(state) || RoomSelector.getLoading(state) )
   	}
 }
 

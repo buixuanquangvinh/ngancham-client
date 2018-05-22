@@ -14,11 +14,11 @@ var config = {
   },
   devtool: 'cheap-module-source-map',
   plugins: [
-    new webpack.DefinePlugin({ // <-- key to reducing React's size
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
+    //new webpack.DefinePlugin({ // <-- key to reducing React's size
+    //  'process.env': {
+    //    'NODE_ENV': JSON.stringify('production')
+    //  }
+    //}),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|zh-tw)$/),
   ],
   resolve: {

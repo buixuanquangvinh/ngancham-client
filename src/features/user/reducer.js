@@ -1,13 +1,12 @@
 import ActionType from './action'
-import { DEFAULT_USER_FORM } from './const'
 
 const initialState = {
   loading:false,
   bootstraped:false,
   error:'',
   users:[],
-  roles:[],
-  form:{...DEFAULT_USER_FORM}
+  user_roles:[],
+  roles:[]
 }
 
 export default function reducer(state = initialState, action) {
@@ -15,7 +14,7 @@ export default function reducer(state = initialState, action) {
     case ActionType.BOOTSTRAP:
       return {...state,loading:true}
     case ActionType.BOOTSTRAP_SUCCESSED:
-      return {...state, loading:false, bootstraped: true, users:action.payload.users, roles:action.payload.roles}
+      return {...state, loading:false, bootstraped: true, ...action.payload}
    
     case ActionType.CREATE_USER:
       return {...state,loading:true}
@@ -24,18 +23,24 @@ export default function reducer(state = initialState, action) {
     case ActionType.SAVE_USER:
       return {...state,loading:true}
     case ActionType.SAVE_USER_SUCCESSED:{
-      const new_users = state.categories.map((user)=>{
+      const new_users = state.users.map((user)=>{
         if(user.id == action.payload.id)
           return action.payload
         else return user
       })
       return {...state, loading:false, users:new_users}
     }
-
-    case ActionType.EDIT_USER_FORM:{
-      const { key, value } = action.payload
-      const { form } = state
-      return {...state,form:{...form,[key]:value}}
+    case ActionType.REMOVE_USER:
+      return {...state,loading:true}
+    case ActionType.REMOVE_USER_SUCCESSED:{
+      const new_users = state.users.filter((user)=> user.id!=action.payload.id)
+      return {...state, loading:false, users:new_users}
+    }
+    case ActionType.UPDATE_USER_ROLE:
+      return {...state,loading:true}
+    case ActionType.UPDATE_USER_ROLE_SUCCESSED:{
+      const new_user_roles = state.user_roles.filter((user_role)=> user_role.user_id != action.payload.user_id).concat(action.payload.user_roles)
+      return {...state, loading:false, user_roles:new_user_roles}
     }
 
     case ActionType.SET_ERROR:

@@ -1,10 +1,8 @@
 import ActionType from './action'
-import { DEFAULT_LOGIN_FORM } from './const'
 
 const initialState = {
   loading: false,
-  error:'',
-  form:{...DEFAULT_LOGIN_FORM}
+  error:''
 }
 
 export default function reducer(state = initialState, action) {
@@ -22,12 +20,6 @@ export default function reducer(state = initialState, action) {
       localStorage.clear()
       location.reload() 
       return {...state}
-
-    case ActionType.EDIT_LOGIN_FORM:{
-      const { key, value } = action.payload
-      const { form } = state
-      return {...state,form:{...form,[key]:value}}
-    }
 
     case ActionType.SET_ERROR:
       return {...state,error:action.payload,loading:false}

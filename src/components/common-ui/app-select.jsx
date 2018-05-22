@@ -5,17 +5,22 @@ import 'react-select/dist/react-select.css'
 export default class AppSelect extends Component{
 
 	componentDidMount(){
-		const { value, options, onChange } = this.props
+		const { name, value, options, onChange } = this.props
 		if(!value && options.length)
-			onChange(options[0].value)
+			onChange({ 
+				target:{
+					name:name,
+					value:options[0].value
+				} 
+			})
 	}
 
 	render(){
-		const { label, value, options, onChange, compact } = this.props
+		const { label, options, onChange, compact } = this.props
 		if(compact)
 			return(
 				<div className="mb-3">
-				  	<select className="custom-select" value={value} onChange={(e)=>onChange(e.target.value)}>
+				  	<select className="custom-select" {...this.props}>
 				  	{options.map((option)=>{
 				  		return <option key={option.value} value={option.value}>{option.label}</option>
 				  	})}
@@ -28,7 +33,7 @@ export default class AppSelect extends Component{
 				  	<div className="input-group-prepend">
 				    	<span className="input-group-text">{label}</span>
 				  	</div>
-				  	<select className="custom-select" value={value} onChange={(e)=>onChange(e.target.value)}>
+				  	<select className="custom-select" {...this.props}>
 				  	{options.map((option)=>{
 				  		return <option key={option.value} value={option.value}>{option.label}</option>
 				  	})}

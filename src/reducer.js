@@ -5,7 +5,6 @@ import { LoginReducer } from 'features/login'
 import { OrderReducer } from 'features/order'
 import { ReportReducer } from 'features/report'
 import { RoomReducer } from 'features/room'
-import { TableReducer } from 'features/table'
 import { UserReducer } from 'features/user'
 
 const rootReducer = combineReducers({
@@ -15,7 +14,6 @@ const rootReducer = combineReducers({
  order: OrderReducer,
  report: ReportReducer,
  room: RoomReducer,
- table: TableReducer,
  user: UserReducer
 })
 

@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ItemSelector } from 'features/item'
+import { CategorySelector } from 'features/category'
+import { ItemAction, ItemSelector } from 'features/item'
 
-import ItemChart from './item-chart'
-import ItemForm from './item-form'
-import ItemPriceForm from './item-price-form'
-import ItemPriceList from './item-price-list'
-import ItemModifierForm from './item-modifier-form'
-import ItemModifierList from './item-modifier-list'
+import { ItemForm, ItemPriceForm, ItemModifierForm } from 'components/item'
 
 class ItemDetail extends Component {
 
 	render(){
-		const { item } = this.props
+		const { item, itemModifiers, itemPrices, categoryOptions, save, remove, createModifier, saveModifier, removeModifier, createPrice, savePrice, removePrice } = this.props
 		if(item)
 		  	return (
 		      	<div className="row">
-		      		<div className="col-12"><ItemForm {...this.props}/></div>
-		        	<div className="col-4">
-		        		<ItemChart {...this.props}/>
-		        	</div>
-		        	<div className='col-6'>
-		        		<ItemPriceForm {...this.props}/>
-		        		<ItemPriceList {...this.props}/>
-		        		<ItemModifierForm {...this.props}/>
-		        		<ItemModifierList {...this.props}/>
+		      		<div className="col-12 col-md-5">
+		      			<ItemForm item={item} categoryOptions={categoryOptions} submit={save} remove={remove}/>
+		      		</div>
+		        	<div className='col-12 col-md-7'>
+		        		<ItemPriceForm item={item} submit={createPrice}/>
+		        		{itemPrices.map((itemPrice)=>{
+				          return <ItemPriceForm key={itemPrice.id} item={item} itemPrice={itemPrice} submit={savePrice} remove={removePrice}/>
+				        })}
+		        		<ItemModifierForm item={item} submit={createModifier}/>
+		        		{itemModifiers.map((itemModifier)=>{
+				          return <ItemModifierForm key={itemModifier.id} item={item} itemModifier={itemModifier} submit={saveModifier} remove={removeModifier}/>
+				        })}
 		        	</div>
 		      	</div>
 		    )
@@ -36,10 +35,29 @@ class ItemDetail extends Component {
 
 const mapStateToProps = (state,props) => {
   return {
-    item: ItemSelector.getItem(state,props.params.id)
+    item: ItemSelector.getItem(state,props.params.id),
+    itemModifiers: ItemSelector.getItemModifiers(state,props.params.id),
+    itemPrices: ItemSelector.getItemPrices(state,props.params.id),
+    categoryOptions: CategorySelector.getCategoryOption(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    save: (item) => dispatch({ type:ItemAction.SAVE_ITEM, payload:item }),
+    remove: (item) => dispatch({ type:ItemAction.REMOVE_ITEM, payload:item }),
+
+    createModifier: (form)=> dispatch({ type:ItemAction.CREATE_ITEM_MODIFIER, payload:form }),
+    saveModifier: (form)=> dispatch({ type:ItemAction.SAVE_ITEM_MODIFIER, payload:form }),
+    removeModifier: (itemModifier)=> dispatch({ type:ItemAction.REMOVE_ITEM_MODIFIER, payload:itemModifier }),
+
+    createPrice: (form)=> dispatch({ type:ItemAction.CREATE_ITEM_PRICE, payload:form }),
+    savePrice: (form)=> dispatch({ type:ItemAction.SAVE_ITEM_PRICE, payload:form }),
+    removePrice: (itemPrice)=> dispatch({ type:ItemAction.REMOVE_ITEM_PRICE, payload:itemPrice })
   }
 }
 
  export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ItemDetail)

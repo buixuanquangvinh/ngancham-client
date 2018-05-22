@@ -5,20 +5,34 @@ import { LoginAction, LoginSelector } from 'features/login'
 
 class Login extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      user_name:'',
+      password:''
+    }
+  }
+
+  edit = (e)=>{
+    this.setState({ [e.target.name]:e.target.value })
+  }
+
   render(){
-    const { form, edit, login } = this.props
+    const { user_name, password } = this.state
+    const { edit } = this
+    const { login } = this.props
     return (
       <div className="container-fluid" style={{overflow:'hidden',height:'100vh'}}>
         <div className="row" style={{marginTop:'20%'}}>
-          <div className='col-4 text-right pt-5' style={{paddingRight:'100px'}}>
+          <div className='d-none d-md-block col-md-4 text-right pt-5' style={{paddingRight:'100px'}}>
             <div className='d-inline-block bubble' style={{width:'80px'}}></div>
           </div>
-          <div className='col-4 card card-body'>
-            <AppInput label='username' value={form.user_name} onChange={(value)=>edit('user_name',value)}/>
-            <AppInput label='password' type='password' value={form.password} onChange={(value)=>edit('password',value)}/>
-            <button className='btn btn-primary' onClick={()=>login(form)}>Login</button>
+          <div className='col-12 col-md-4 card card-body'>
+            <AppInput name='user_name' label='username' value={user_name} onChange={edit}/>
+            <AppInput name='password' label='password' type='password' value={password} onChange={edit}/>
+            <button className='btn btn-primary' onClick={()=>login(this.state)}>Login</button>
           </div>
-          <div className='col-4 text-left pt-5' style={{paddingLeft:'100px'}}>
+          <div className='d-none d-md-block col-md-4 text-left pt-5' style={{paddingLeft:'100px'}}>
             <div className='d-inline-block bubble' style={{width:'80px'}}></div>
           </div>
         </div>
@@ -30,13 +44,11 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    form: LoginSelector.getLoginForm(state),
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    edit: (key,value)=> dispatch({ type: LoginAction.EDIT_LOGIN_FORM, payload:{ key:key, value:value } }),
     login: (form)=> dispatch({ type: LoginAction.LOGIN, payload:form })
   }
 }
