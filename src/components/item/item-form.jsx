@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import { AppInput, AppSelect } from 'components/common-ui'
 
 export default class ItemForm extends Component {
@@ -61,4 +63,11 @@ export default class ItemForm extends Component {
     )
 	}
 
+}
+
+ItemForm.propTypes = {
+  item: PropTypes.object,
+  categoryOptions: PropTypes.array,
+  submit: PropTypes.func,
+  remove: PropTypes.func
 }

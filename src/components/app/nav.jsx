@@ -10,8 +10,14 @@ class Nav extends Component {
   	return (
       <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-primary">
         <a className="navbar-brand" href="#"><i className='fab fa-chrome'></i></a>
-        <span className="navbar-brand" style={{cursor:'pointer'}}>{user.user_name}</span>
-        <span className="navbar-brand" style={{cursor:'pointer'}} onClick={logout}><i className='fas fa-power-off'></i></span>
+        <ul className="nav justify-content-end">
+          <li className="nav-item">
+            <span className="navbar-brand" style={{cursor:'pointer'}}>{user.user_name}</span>
+          </li>
+          <li className="nav-item">
+            <span className="navbar-brand" style={{cursor:'pointer'}} onClick={logout}><i className='fas fa-power-off'></i></span>
+          </li>
+        </ul>
       </nav>
     )
 	}

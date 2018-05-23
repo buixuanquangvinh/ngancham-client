@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import { AppInput } from 'components/common-ui'
 
 export default class CategoryForm extends Component {
@@ -33,4 +35,8 @@ export default class CategoryForm extends Component {
     )
 	}
 
+}
+
+CategoryForm.propTypes = {
+  submit: PropTypes.func
 }

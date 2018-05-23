@@ -47,37 +47,27 @@ class Report extends Component {
 
 	render(){
 		const { start_date, end_date, create_user, checkout_user } = this.state
-		const { userOptions, archivedOrderList, fetchData } = this.props
+		const { userOptions, archivedOrderList, archivedOrderedItemList, fetchData } = this.props
 		const { editFilter, filterArchivedOrder, calSum } = this 
 	  	return (
 	      	<div className="row">
-	        	<div className='col-8'>
+	        	<div className='col-12 col-md-6'>
 	      			<AppDateRangePicker label="time" start={start_date} onChangeStart={(value)=>editFilter('start_date',value)} end={end_date} onChangeEnd={(value)=>editFilter('end_date',value)}/>
 	    		</div>
-	    		<div className='col-4'>
-	      			<button className='btn btn-primary' onClick={()=>fetchData(this.state)}>Xem dữ liệu</button>
-	    		</div>
-	        	<div className='col-6'>
+	        	<div className='col-12 col-md-6'>
 		          	<AppSelect label='Tạo bởi' value={create_user} onChange={(e)=>editFilter('create_user',e.target.value)} options={userOptions}/>
 		        </div>
-		        <div className='col-6'>
+		        <div className='col-12 col-md-6'>
 		          	<AppSelect label='Thanh toán bởi' value={checkout_user} onChange={(e)=>editFilter('checkout_user',e.target.value)} options={userOptions}/>
 		        </div>
-		        <div className='col-12 d-table mb-2'>
-		          	<div className='d-table-row text-center'>
-			            <div className='d-table-cell p-1'></div>
-			            <div className='d-table-cell p-1'></div>
-			            <div className='d-table-cell p-1'></div>
-			            <div className='d-table-cell p-1'>Tổng <AppCurrency>{calSum()}</AppCurrency></div>
-			        </div>
-		          	<div className='d-table-row text-center'>
-		            	<div className='d-table-cell p-1'>Phòng</div>
-		            	<div className='d-table-cell p-1'>Người tạo</div>
-		            	<div className='d-table-cell p-1'>Người thu</div>
-		            	<div className='d-table-cell p-1'>Số tiền</div>
-		          	</div>
+		        <div className='col-12 col-md-6'>
+	      			<button className='btn btn-primary btn-block' onClick={()=>fetchData(this.state)}>Xem dữ liệu</button>
+	    		</div>
+		        <div className='col-12 mt-3'>
+		        	<p>Tổng: <AppCurrency>{calSum()}</AppCurrency></p>
 		          	{archivedOrderList.filter(filterArchivedOrder).map((archivedOrder)=>{
-		            	return <ArchivedOrder key={archivedOrder.id} archivedOrder={archivedOrder}/>
+		          		let archivedOrderedItems =archivedOrderedItemList.filter((i)=>i.archived_order_id==archivedOrder.id)
+		            	return <ArchivedOrder key={archivedOrder.id} archivedOrder={archivedOrder} archivedOrderedItems={archivedOrderedItems}/>
 		          	})}
 		        </div>
 	      	</div>
@@ -89,7 +79,8 @@ class Report extends Component {
 const mapStateToProps = (state) => {
   return {
     userOptions: [{ value:'', label:'Tất cả' }].concat(UserSelector.getUserList(state).map((user)=>{ return { value:user.user_name, label:user.user_name } })),
-    archivedOrderList: ReportSelector.getArchivedOrderList(state)
+    archivedOrderList: ReportSelector.getArchivedOrderList(state),
+    archivedOrderedItemList: ReportSelector.getArchivedOrderedItemList(state),
   }
 }
 

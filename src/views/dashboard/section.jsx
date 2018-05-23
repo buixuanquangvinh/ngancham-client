@@ -6,13 +6,13 @@ export default class Section extends Component {
 		const { icon, label, url } = this.props
 	  	return (
 	  		<a href={url}>
-		      	<div className="border rounded p-1 mt-2 text-center" style={{height:'100px',lineHeight:'90px'}}>
-		        	<div className='row'>
-		        		<div className='col-3' style={{fontSize:'40px'}}>{icon}</div>
-		        		<div className='col-9' style={{fontSize:'20px'}}>{label}</div>
+		      	<div className="card mb-2 text-center" style={{height:'100px'}}>
+		        	<div className='card-body row p-1'>
+		        		<div className='col-12' style={{fontSize:'30px'}}>{icon}</div>
+		        		<div className='col-12'>{label}</div>
 		        	</div>
 		      	</div>
-	      </a>
+	      	</a>
 	    )
 	}
 

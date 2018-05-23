@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import { AppInput } from 'components/common-ui'
 
 export default class ItemPriceForm extends Component {
@@ -42,4 +44,10 @@ export default class ItemPriceForm extends Component {
     )
 	}
 
+}
+
+ItemPriceForm.propTypes = {
+  itemPrice: PropTypes.object,
+  submit: PropTypes.func,
+  remove: PropTypes.func
 }
