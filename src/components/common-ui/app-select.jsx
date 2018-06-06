@@ -19,17 +19,15 @@ export default class AppSelect extends Component{
 		const { label, options, onChange, compact } = this.props
 		if(compact)
 			return(
-				<div className="mb-3">
-				  	<select className="custom-select" {...this.props}>
-				  	{options.map((option)=>{
-				  		return <option key={option.value} value={option.value}>{option.label}</option>
-				  	})}
-					</select>
-				</div>
+			  	<select className="custom-select" {...this.props}>
+			  	{options.map((option)=>{
+			  		return <option key={option.value} value={option.value}>{option.label}</option>
+			  	})}
+				</select>
 			)
 		else
 			return(
-				<div className="input-group mb-3">
+				<div className="input-group">
 				  	<div className="input-group-prepend">
 				    	<span className="input-group-text">{label}</span>
 				  	</div>

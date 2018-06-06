@@ -6,8 +6,8 @@ export default class Category extends Component {
 	render(){
 		const { category } = this.props
   	return (
-      <div className="mt-1 border rounded p-1">
-        {category.category_name}
+      <div className="card mt-2">
+        <div className='card-body'>{category.category_name}</div>
       </div>
     )
 	}

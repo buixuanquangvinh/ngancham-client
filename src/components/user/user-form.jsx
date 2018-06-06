@@ -24,11 +24,11 @@ export default class UserForm extends Component {
     const { edit, submit } = this
   	return (
       <div className='row'>
-        <div className='col-6'>
+        <div className='col-8'>
           <AppInput name='user_name' label='Tên đăng nhập' value={user_name} onChange={edit}/>
         </div>
-        <div className='col-6'>
-          <button className='btn btn-primary' onClick={submit}>Tạo</button>
+        <div className='col-4'>
+          <button className='btn btn-primary btn-block' onClick={submit}>Tạo</button>
         </div>
       </div>
     )

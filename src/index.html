@@ -14,41 +14,13 @@
     <script src="./vendor/font-awsome.all.js"></script>
     <script>if (window.module) module = window.module;</script>
   </head>
-<body class='bg-light'>
+<body class='bg-dark'>
   <div id="app"></div>
 </body>
 <script src="./dist/web.bundle.js" ></script>
 <style>
 /* need for select index to work */
-body{
-  font-size: 18px;
-}
 .input-group .form-control, .input-group-btn .btn { z-index: inherit !important; }
-.form-control {
-  min-height:34px;
-}
-@keyframes bubble_animation {
-    0% {
-      opacity: 0;
-      transform: scale(1.0) rotate(0deg);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(2.0) rotate(360deg);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(1.0) rotate(720deg);
-    }
-}
-/* The element to apply the animation to */
-.bubble{
-    min-width: 80px;
-    min-height: 80px;
-    border:solid 1px;
-    animation-name: bubble_animation;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-}
+
 </style>
 </html>

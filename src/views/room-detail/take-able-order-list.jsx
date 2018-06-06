@@ -10,7 +10,7 @@ class TakeAbleOrderList extends Component {
 	render(){
     const { availableOrders, saveOrder } = this.props
   	return (
-      <AppSection label='HÓA ĐƠN CHƯA CHỌN BÀN HOẶC CHUYỂN BÀN'>
+      <AppSection label='HÓA ĐƠN CHƯA CHỌN PHÒNG'>
         <AppDropable type='order' onDrop={(order)=>saveOrder({...order,room_id:null})}>
           <div className='row' style={{minHeight:'60px'}}>
             {availableOrders.map((order)=>{

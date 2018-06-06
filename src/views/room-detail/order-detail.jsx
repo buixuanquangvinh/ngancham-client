@@ -52,7 +52,7 @@ class OrderDetail extends Component {
 			            <div className='d-table-cell p-1'></div>
 			          </div>
 			          {orderedItems.map((orderedItem)=>{
-			            return <OrderedItem key={orderedItem.id} orderedItem={orderedItem} saveOrderedItem={saveOrderedItem}/>
+			            return <OrderedItem key={orderedItem.id} orderedItem={orderedItem} saveOrderedItem={saveOrderedItem} done={true} cancel={true}/>
 			          })}
 			        </div>
 		      		<div className='col-12'>

@@ -24,7 +24,7 @@ class PendingOrderedItemList extends Component {
 					            <div className='d-table-cell p-1'></div>
 					          </div>
 					          {orderedItems.filter((orderedItem)=>orderedItem.status=='pending' || orderedItem.status=='cooked').map((orderedItem)=>{
-					            return <OrderedItem key={orderedItem.id} orderedItem={orderedItem} saveOrderedItem={saveOrderedItem}/>
+					            return <OrderedItem key={orderedItem.id} orderedItem={orderedItem} saveOrderedItem={saveOrderedItem} done={true} cancel={true}/>
 					          })}
 					        </div>
 					    </div>

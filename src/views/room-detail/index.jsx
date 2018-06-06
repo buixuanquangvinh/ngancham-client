@@ -29,13 +29,13 @@ class RoomDetail extends Component {
 	      	<div className="d-md-none col-12">
 	        	{checkPending?
 	        		(<div>
-	        			<button className='btn btn-secondary' onClick={()=>this.setState({checkPending:false})}>Danh sách Order</button>
+	        			<button className='btn btn-secondary btn-block mt-1 mb-1' onClick={()=>this.setState({checkPending:false})}>Danh sách Order</button>
 	        			<PendingOrderedItemList {...this.props}/>
 	        		</div>):
 	        		(currentOrder.id?
 		      			<OrderDetail {...this.props} os='mobile'/>:
 			      		<div>
-			      			<button className='btn btn-secondary' onClick={()=>this.setState({checkPending:true})}>Đồ chưa có của phòng</button>
+			      			<button className='btn btn-secondary btn-block mt-1 mb-1' onClick={()=>this.setState({checkPending:true})}>Đồ chưa có của phòng</button>
 				        	<TakeAbleOrderList {...this.props}/>
 				        	<OrderList {...this.props}/>
 			        	</div>

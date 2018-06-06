@@ -16,12 +16,18 @@ export default class User extends Component {
 		const { user, user_role, roleOptions } = this.props
     const { edit, remove } = this
   	return (
-      <div className='d-table-row'>
-        <div className='d-table-cell'>{user.user_name}</div>
-        <div className='d-table-cell'>
-          <AppMultiSelect label='roles' value={user_role} options={roleOptions} onChange={edit} compact={true}/>
+      <div className='card mt-2'>
+        <div className='card-body'>
+          <div className='row'>
+            <div className='col-9 col-md-5'>{user.user_name}</div>
+            <div className='col-3 col-md-2 text-right'>
+              <button className='btn btn-danger' onClick={remove}><i className="fas fa-times"></i></button>
+            </div>
+            <div className='col-12 col-md-5'>
+              <AppMultiSelect label='roles' value={user_role} options={roleOptions} onChange={edit} compact={true}/>
+            </div>
+          </div>
         </div>
-        <div className='d-table-cell'><button className='btn btn-danger' onClick={remove}><i className="fas fa-times"></i></button></div>
       </div>
     )
 	}

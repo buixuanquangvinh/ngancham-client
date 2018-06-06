@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { AppInput, AppModal } from 'components/common-ui'
-import { RoomAction, RoomSelector } from 'features/room'
 
 export default class RoomForm extends Component {
 

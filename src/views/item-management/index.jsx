@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { ItemAction, ItemSelector } from 'features/item'
 import { CategorySelector } from 'features/category'
 
+import { AppModal } from 'components/common-ui'
 import { ItemForm, Item } from 'components/item'
 
 class ItemManagement extends Component {
@@ -12,11 +13,15 @@ class ItemManagement extends Component {
 		const { itemList, categoryOptions, create } = this.props
 	  	return (
 	      	<div className="row">
-	        	<div className="col-12 col-md-3"><ItemForm categoryOptions={categoryOptions} submit={create}/></div>
-	        	<div className="col-12 col-md-9">
+	        	<div className="col-12">
+	        		<AppModal id="item-form" label={<i className="fas fa-plus"></i>}>
+	        			<ItemForm categoryOptions={categoryOptions} submit={create}/>
+	        		</AppModal>
+	        	</div>
+	        	<div className="col-12 mt-2" style={{height:'90vh',overflow:'auto'}}>
 	        		<div className='row'>
 		        		{itemList.map((item)=>{
-				          return <div className='col-6 col-md-3' key={item.id}><a href={"#/item/"+item.id}><Item item={item}/></a></div>
+				          return <div className='col-12 col-md-3' key={item.id}><a href={"#/item/"+item.id}><Item item={item}/></a></div>
 				        })}
 			        </div>
 	        	</div>

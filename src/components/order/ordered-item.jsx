@@ -5,7 +5,7 @@ import { AppCurrency } from 'components/common-ui'
 export default class OrderedItem extends Component {
 
 	render(){
-		const { orderedItem, saveOrderedItem } = this.props
+		const { orderedItem, saveOrderedItem, cooked, done, cancel } = this.props
 		let className = "rounded bg-secondary"
 		if(orderedItem.status == 'done')
 		  className = "rounded bg-success"
@@ -26,9 +26,9 @@ export default class OrderedItem extends Component {
 			<div className='d-table-cell p-1'><AppCurrency>{sum}</AppCurrency></div>
 			<div className='d-table-cell p-1'>{orderedItem.number_of_item}</div>
 			<div className='d-table-cell p-1'>
-			  <button className='btn btn-primary' onClick={()=>saveOrderedItem({...orderedItem,status:'cooked'})}><i className="fas fa-check"></i></button>
-			  <button className='btn btn-success' onClick={()=>saveOrderedItem({...orderedItem,status:'done'})}><i className="fas fa-check"></i></button>&nbsp;
-			  <button className='btn btn-danger' onClick={()=>saveOrderedItem({...orderedItem,status:'cancel'})}><i className="fas fa-times"></i></button>
+			  {cooked?<button className='btn btn-primary' onClick={()=>saveOrderedItem({...orderedItem,status:'cooked'})}><i className="fas fa-check"></i></button>:null}&nbsp;
+			  {done?<button className='btn btn-success' onClick={()=>saveOrderedItem({...orderedItem,status:'done'})}><i className="fas fa-check"></i></button>:null}&nbsp;
+			  {cancel?<button className='btn btn-danger' onClick={()=>saveOrderedItem({...orderedItem,status:'cancel'})}><i className="fas fa-times"></i></button>:null}
 			</div>
 		  </div>
 		)

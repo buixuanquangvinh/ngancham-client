@@ -15,7 +15,7 @@ class PendingOrderedItemList extends Component {
 		      	<div className='row' >
 			        <div className='col-12 d-table mb-2'>
 			          	{orderedItems.filter((orderedItem)=>orderedItem.status=='pending').map((orderedItem)=>{
-			            	return <OrderedItem key={orderedItem.id} orderedItem={orderedItem} saveOrderedItem={saveOrderedItem}/>
+			            	return <OrderedItem key={orderedItem.id} orderedItem={orderedItem} saveOrderedItem={saveOrderedItem} cooked={true}/>
 			          	})}
 			        </div>
 		      	</div>

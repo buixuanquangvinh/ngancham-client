@@ -12,7 +12,7 @@ class TableList extends Component {
 	render(){
     const { room, orderList, currentOrder, saveOrder, params , selectOrder} = this.props
   	return (
-      <AppSection label='DANH SÁCH ORDER'>
+      <AppSection label='HÓA ĐƠN CỦA PHÒNG'>
         <AppDropable type="order" onDrop={(order)=>saveOrder({...order,room_id:params.id})}>
           <div className='row' style={{height:'298px',overflow:'auto'}}>
             {orderList.map((order)=>{

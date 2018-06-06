@@ -7,7 +7,7 @@ export default class AppModal extends Component{
 		let style = {}
 		let modalStyle = {}
 		if(height) style = { height:height }
-		if(full) modalStyle = { minWidth: '100%', margin: '5px' }
+		if(full) modalStyle = { minWidth: '100%', margin: '0px' }
 		return(
 			<div>
 				<button className="btn btn-primary btn-block" data-toggle="modal" data-target={"#"+id} style={style}>{label}</button>

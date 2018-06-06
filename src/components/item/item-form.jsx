@@ -50,14 +50,14 @@ export default class ItemForm extends Component {
             style={{width:'100%',maxHeight:'400px',cursor:'pointer'}} 
             onClick={()=>document.getElementById('file-input').click()}
           />
-          <input id='file-input' name='file' className='invisible' type='file' onChange={edit}/>
+          <input id='file-input' name='file' className='invisible' type='file' onChange={edit} multiple="multiple"/>
         </div>
         <div className='col-12'>
-          <AppInput name='item_name' label='Tên món' value={item_name} onChange={edit}/>
-          <AppInput name='item_description' label='Description' value={item_description} onChange={edit}/>
-          <AppSelect name='category_id' label='Danh mục' value={category_id} onChange={edit} options={categoryOptions}/>
-          <button className='btn btn-primary btn-block' onClick={submit}>Thêm</button>
-          {item?<button className='btn btn-danger btn-block' onClick={remove}>Xóa</button>:null}
+          <div className='mt-2'><AppInput name='item_name' label='Tên món' value={item_name} onChange={edit}/></div>
+          <div className='mt-2'><AppInput name='item_description' label='Description' value={item_description} onChange={edit}/></div>
+          <div className='mt-2'><AppSelect name='category_id' label='Danh mục' value={category_id} onChange={edit} options={categoryOptions}/></div>
+          <div className='mt-2'><button className='btn btn-primary btn-block' onClick={submit}>Thêm</button></div>
+          <div className='mt-2'>{item?<button className='btn btn-danger btn-block' onClick={remove}>Xóa</button>:null}</div>
         </div>
       </div>
     )

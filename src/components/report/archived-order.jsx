@@ -5,11 +5,11 @@ export default class ArchivedOrder extends Component {
 
 	render(){
 		const { archivedOrder, archivedOrderedItems } = this.props
-		let status = <i className="fas fa-check-circle text-success"></i>
-		archivedOrderedItems.map((o)=>{
-			if(o.status=='cancel' || o.status=='cooked')
+		let status = <i className="fas fa-check-circle text-secondary"></i>
+			if(archivedOrder.status=='normal')
+				status = <i className="fas fa-check-circle text-success"></i>
+			if(archivedOrder.status=='abnormal')
 				status = <i className="fas fa-exclamation-circle text-warning"></i>
-		})
 	  	return (
 	      <div className='card mb-2'>
 	      	<div className='card-body row'>
@@ -21,8 +21,10 @@ export default class ArchivedOrder extends Component {
 		      	<div className='col-12 col-md-1 mt-1'><button className="btn btn-info btn-block" data-toggle="collapse" data-target={"#archivedOrder"+archivedOrder.id}><i className="fas fa-angle-down"></i></button></div>
 		      	<div className='col-12 collapse mt-1' id={'archivedOrder'+archivedOrder.id}>
 		      		<div className='row'>
-		        		<div className='col-12'>
+		        		<div className='col-12 col-md-5'>
 		        			<p>Tạo bởi: {archivedOrder.create_user}</p>
+		        		</div>
+		        		<div className='col-12 col-md-7'>
 		        			<p>Thanh toán bởi: {archivedOrder.checkout_user}</p>
 		        		</div>
 		        		<div className='col-12'>

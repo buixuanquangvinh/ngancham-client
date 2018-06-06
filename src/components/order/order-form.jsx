@@ -78,33 +78,38 @@ export default class OrderForm extends Component {
 		const { editFilter, editForm, addOrderItem, editOrderItem, removeOrderItem, getItemPrices, getItemModifiers, submit } = this
 	  	return (
 	      	<div className="row">
-	        	<div className="col-12 col-md-6">
+	        	<div className="col-12 col-md-6 mt-2">
               <div className='row'>
   	        		<div className='col-8 col-md-6'><AppInput name='order_number' label='Number' value={form.order_number} onChange={editForm}/></div>
-          			<div className='col-4 col-md-6'><button className='btn btn-primary' onClick={loading?null:submit}>TẠO</button></div>
-  	        		{form.order_items.map((orderItem)=>{
+          			<div className='col-4 col-md-6'><button className='btn btn-primary btn-block' onClick={loading?null:submit}>TẠO</button></div>
+                <div className='col-12' > 
+  	        		 {form.order_items.map((orderItem)=>{
   			            return(
-                      <div className='col-12' key={orderItem.temp_id} > 
-                        <OrderItem 
-                          orderItem={orderItem}
-                          edit={(e)=>editOrderItem(orderItem.temp_id,e.target.name,e.target.value)} 
-                          prices={getItemPrices(orderItem.id)} 
-                          modifiers={getItemModifiers(orderItem.id)}
-                          remove={()=>removeOrderItem(orderItem)}
-                        />
-                      </div>
+                      <OrderItem 
+                        key={orderItem.temp_id}
+                        orderItem={orderItem}
+                        edit={(e)=>editOrderItem(orderItem.temp_id,e.target.name,e.target.value)} 
+                        prices={getItemPrices(orderItem.id)} 
+                        modifiers={getItemModifiers(orderItem.id)}
+                        remove={()=>removeOrderItem(orderItem)}
+                      />
   			            )
-                })}
+                  })}
+                </div>
               </div>
 	        	</div>
-	        	<div className="col-12 col-md-6">
+	        	<div className="col-12 col-md-6 mt-2">
 	        		<div className='row'>
 	        			<div className='col-12'>
 	        				<AppSelect name='category' label='Category' value={filter.category} options={categoryOption} onChange={editFilter}/>
 	        			</div>
-					    {itemList.filter((item)=>filter.category?item.category_id==filter.category:true).map((item)=>{
-					        return <div className='col-12 col-md-4' key={item.id} onClick={()=>addOrderItem(item)}><Item item={item}/></div>
-					    })}
+                <div className='col-12 mt-2'>
+                  <div className='row'>
+      					    {itemList.filter((item)=>filter.category?item.category_id==filter.category:true).map((item)=>{
+      					        return <div className='col-12 col-md-4' key={item.id} onClick={()=>addOrderItem(item)}><Item item={item}/></div>
+      					    })}
+                  </div>
+                </div>
 				    </div>
 	        	</div>
 	      	</div>
@@ -117,22 +122,20 @@ class OrderItem extends Component {
   render(){
     const { orderItem, prices, modifiers, edit, remove } = this.props
     return (
-      <div className='d-table w-100'>
-        <div className='d-table-row'>
-          <div className='d-table-cell'>{orderItem.item_name}</div>
-          <div className='d-table-cell'>
+      <div className='card mt-1 mb-1'>
+        <div className='card-body row p-1'>
+          <div className='col-6 col-md-2'>{orderItem.item_name}</div>
+          <div className='col-6 col-md-3'>
             <button className='btn btn-light' name='number_of_item' onClick={orderItem.number_of_item>1?edit:null} value={orderItem.number_of_item-1}><i className='fas fa-minus'/></button>&nbsp;
             {orderItem.number_of_item}&nbsp;
             <button className='btn btn-light' name='number_of_item' onClick={edit} value={parseInt(orderItem.number_of_item)+1}><i className='fas fa-plus'/></button>&nbsp;&nbsp;&nbsp;
             <button className='btn btn-danger' onClick={remove}><i className='fas fa-times'/></button>
           </div>
-        </div>
-        <div className='d-table-row'>
-          <div className='d-table-cell'>
+          <div className='col-6 col-md-3'>
             <AppSelect name='item_price' label='prices' value={orderItem.item_price} options={prices} onChange={edit} compact='true'/>
           </div>
-          <div className='d-table-cell'>
-            <AppMultiSelect name='item_modifiers' label='modifiers' value={orderItem.item_modifiers} options={modifiers} onChange={edit} compact='true'/>
+          <div className='col-6 col-md-4'>
+            <AppMultiSelect name='item_modifiers' label='modifiers' value={orderItem.item_modifiers} options={modifiers} onChange={ (value)=>edit({target:{name:'item_modifiers',value:value}}) } compact='true'/>
           </div>
         </div>
       </div>
