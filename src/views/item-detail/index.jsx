@@ -15,7 +15,7 @@ class ItemDetail extends Component {
 		      		<div className="col-12 col-md-5">
 		      			<ItemForm item={item} categoryOptions={categoryOptions} submit={save} remove={remove}/>
 		      		</div>
-		        	<div className='col-12 col-md-7 mt-2'>
+		        	<div className='col-12 col-md-7'>
 		        		<ItemPriceForm item={item} submit={createPrice}/>
 		        		{itemPrices.map((itemPrice)=>{
 				          return <ItemPriceForm key={itemPrice.id} item={item} itemPrice={itemPrice} submit={savePrice} remove={removePrice}/>

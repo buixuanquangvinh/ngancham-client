@@ -22,7 +22,11 @@ class Report extends Component {
       		checkout_user:''
     	}
   	}
-  
+  	
+  	componentDidMount(){
+  		this.props.fetchData(this.state)
+  	}
+
 	editFilter = (key,value)=>{
 	    this.setState({[key]:value})
 	}

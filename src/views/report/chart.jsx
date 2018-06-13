@@ -84,7 +84,7 @@ export default class Chart extends Component {
 	render(){
 	  	return (
 	      	<div className="row">
-		        <div className='col-12 mt-3'>
+		        <div className='col-12'>
 		        	<div id='report'></div>
 		        </div>
 	      	</div>

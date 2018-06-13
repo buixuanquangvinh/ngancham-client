@@ -28,9 +28,9 @@ class Login extends Component {
             <div className='d-inline-block bubble' style={{width:'80px'}}></div>
           </div>
           <div className='col-12 col-md-4 card card-body'>
-            <AppInput name='user_name' label='username' value={user_name} onChange={edit}/>
-            <AppInput name='password' label='password' type='password' value={password} onChange={edit}/>
-            <button className='btn btn-primary' onClick={()=>login(this.state)}>Login</button>
+            <div className='mt-2'><AppInput name='user_name' label='username' value={user_name} onChange={edit}/></div>
+            <div className='mt-2'><AppInput name='password' label='password' type='password' value={password} onChange={edit}/></div>
+            <div className='mt-2'><button className='btn btn-primary btn-block' onClick={()=>login(this.state)}>Login</button></div>
           </div>
           <div className='d-none d-md-block col-md-4 text-left pt-5' style={{paddingLeft:'100px'}}>
             <div className='d-inline-block bubble' style={{width:'80px'}}></div>

@@ -33,7 +33,7 @@ export default class ItemPriceForm extends Component {
     const { edit, submit, remove } = this
     const { itemPrice } = this.props
   	return (
-      <div className='row'>
+      <div className='row mb-1'>
         <div className='col-5'><AppInput name='item_price_name' label='Tên Giá' value={item_price_name} onChange={edit} compact={itemPrice}/></div>
         <div className='col-5'><AppInput name='item_price' label='Giá' value={item_price} onChange={edit} compact={itemPrice}/></div>
         <div className='col-2'>

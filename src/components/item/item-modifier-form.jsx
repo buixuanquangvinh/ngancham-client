@@ -33,9 +33,9 @@ export default class ItemModifierForm extends Component {
     const { edit, submit, remove } = this
     const { itemModifier } = this.props
   	return (
-      <div className='row'>
-        <div className='col-5'><AppInput name='item_modifier_name' label='Tên Mod' value={item_modifier_name} onChange={edit}/></div>
-        <div className='col-5'><AppInput name='item_modifier_price' label='Giá' value={item_modifier_price} onChange={edit}/></div>
+      <div className='row mb-1'>
+        <div className='col-5'><AppInput name='item_modifier_name' label='Tên Mod' value={item_modifier_name} onChange={edit} compact={itemModifier}/></div>
+        <div className='col-5'><AppInput name='item_modifier_price' label='Giá' value={item_modifier_price} onChange={edit} compact={itemModifier}/></div>
         <div className='col-2'>
           <button className='btn btn-success' onClick={submit}><i className='fas fa-save'></i></button>
           {itemModifier?<button className='btn btn-danger' onClick={remove}><i className='fas fa-times'></i></button>:null}

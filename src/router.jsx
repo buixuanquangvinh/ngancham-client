@@ -11,7 +11,7 @@ import { OrderSelector, OrderAction } from 'features/order'
 import { ReportSelector } from 'features/report'
 import { RoomSelector } from 'features/room'
 
-import { Login, Dashboard, CategoryManagement, ItemManagement, ItemDetail, OrderCreator, Report, RoomDetail, RoomManagement, UserManagement, KitchenManagement } from 'views'
+import { Login, Dashboard, CategoryManagement, ItemManagement, ItemDetail, OrderCreator, Report, RoomDetail, RoomManagement, UserManagement, KitchenManagement, MyPlayground } from 'views'
 
 import { AppLoadingOverlay } from 'components/common-ui'
 import { isRole } from 'ulti'
@@ -68,6 +68,7 @@ class AppRouter extends Component{
 				    	{isRole('admin','manager')?<Route path="room" component={RoomManagement}/>:null}
 				    	{isRole('admin','manager')?<Route path="room/:id" component={RoomDetail}/>:null}
 				    	{isRole('admin')?<Route path="user" component={UserManagement}/>:null}
+				    	<Route path='my-playground' component={MyPlayground}/>
 				    </Route>:
 				    <Route path="login" component={Login}/>
 					}

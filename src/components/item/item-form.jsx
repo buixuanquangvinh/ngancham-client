@@ -50,7 +50,7 @@ export default class ItemForm extends Component {
             style={{width:'100%',maxHeight:'400px',cursor:'pointer'}} 
             onClick={()=>document.getElementById('file-input').click()}
           />
-          <input id='file-input' name='file' className='invisible' type='file' onChange={edit} multiple="multiple"/>
+          <input id='file-input' name='file' className='d-none' type='file' onChange={edit} multiple="multiple"/>
         </div>
         <div className='col-12'>
           <div className='mt-2'><AppInput name='item_name' label='Tên món' value={item_name} onChange={edit}/></div>
