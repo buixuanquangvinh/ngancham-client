@@ -9,7 +9,7 @@
     "build_desktop": "webpack --config webpack.desktop.config.js --mode development",
     "build_desktop_production": "webpack --config webpack.desktop.config.js --mode production",
     "dev": "webpack-dev-server --mode development --open --config webpack.web.config.js",
-    "start":"http-server ./dist"
+    "start":"http-server ./dist -g"
   },
   "author": "bui xuan quang vinh",
   "license": "ISC",
