@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import ActionType from './action'
-import request from 'request'
+import { request } from 'ulti'
 
 function* fetchData(action) {
   try {

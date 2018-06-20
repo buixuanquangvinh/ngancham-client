@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
+import 'react-select/dist/react-select.css'
 
 export default class AppMultiSelect extends Component{
 
 	render(){
-		const { label, value, options, onChange, compact } = this.props
+		const { label, value, options, onChange, compact, disabled } = this.props
 		if(compact)
 			return(
 			  	<div style={{minWidth:'100px'}}>
@@ -14,6 +15,8 @@ export default class AppMultiSelect extends Component{
 		                multi={true} 
 		                onChange={(value)=>onChange(value.length?value.split(","):[])}
 		                options={options}
+		                disabled={disabled}
+		                style={{height:'38px'}}
 		            />
 	            </div>
 			)
@@ -30,6 +33,8 @@ export default class AppMultiSelect extends Component{
 			                multi={true} 
 			                onChange={(value)=>onChange(value.length?value.split(","):[])}
 			                options={options}
+			                disabled={disabled}
+			                style={{height:'38px'}}
 			            />
 		            </div>
 				</div>

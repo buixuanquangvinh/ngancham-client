@@ -8,12 +8,12 @@ import store from './store'
 import Printer from 'components/printer'
 
 if(document.getElementById('app'))
-ReactDOM.render(
-	<Provider store={store}>
-		<AppRouter/>
-	</Provider>,
-	document.getElementById('app')
-)
+	ReactDOM.render(
+		<Provider store={store}>
+			<AppRouter/>
+		</Provider>,
+		document.getElementById('app')
+	)
 
 if(document.getElementById('print'))
-ReactDOM.render(<Printer/>,document.getElementById('print'))
+	ReactDOM.render(<Printer/>,document.getElementById('print'))

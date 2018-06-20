@@ -1,51 +1,82 @@
-var webpack = require('webpack');
-var path = require('path');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-var BUILD_DIR = path.resolve(__dirname, 'src/dist/');
-var APP_DIR = path.resolve(__dirname, 'src/');
+const webpack = require('webpack');
+const path = require('path');
 
-var config = {
-  entry: [
-    APP_DIR + '/index.jsx'
-  ],
-  output: {
-    path: BUILD_DIR,
-    filename: 'web.bundle.js'
-  },
-  devtool: 'cheap-module-source-map',
-  plugins: [
-    //new webpack.DefinePlugin({ // <-- key to reducing React's size
-    //  'process.env': {
-    //    'NODE_ENV': JSON.stringify('production')
-    //  }
-    //}),
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|zh-tw)$/),
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx', '.css'],
-	  alias: {
-	    request: path.resolve(APP_DIR, 'request/'),
-      ulti: path.resolve(APP_DIR, 'ulti.web/'),
-      features: path.resolve(APP_DIR, 'features/'),
-      components: path.resolve(APP_DIR, 'components/'),
-      views: path.resolve(APP_DIR, 'views/')
-	  }
+module.exports = {
+  entry: {
+    app: ['./src/index.jsx','react-hot-loader/patch'],
+    vendors: [
+      './src/vendors/font-awsome.all.js'
+    ]
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        query: {
-          presets: ['react', 'es2015', 'stage-2'],
-          plugins: ["transform-class-properties"]
+        use: {
+          loader: "babel-loader"
         }
       },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, loader: 'url-loader' }
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        exclude: [path.resolve(__dirname, 'src/index.css'), /node_modules/],
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: "[name]_[local]_[hash:base64]",
+              sourceMap: true,
+              minimize: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
+      }
     ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.css'],
+    alias: {
+      request: path.resolve(__dirname, 'src/request/'),
+      ulti: path.resolve(__dirname, 'src/ulti.web/'),
+      features: path.resolve(__dirname, 'src/features/'),
+      components: path.resolve(__dirname, 'src/components/'),
+      views: path.resolve(__dirname, 'src/views/')
+    }
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    contentBase: './dist',
+    hot: true
   }
-}
-
-module.exports = config;
+};
