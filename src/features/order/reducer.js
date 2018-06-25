@@ -85,7 +85,6 @@ export default function reducer(state = initialState, action) {
         return {...state,ordered_items:new_ordered_items}
       }
       if(action_type=='checkout_order'){
-        console.log(data)
         const new_orders = orders.filter((order)=>order.id != data.order.id)
         const new_ordered_items = ordered_items.filter((ordered_item)=> ordered_item.order_id != data.order.id)
         return {...state, orders:new_orders, ordered_items:new_ordered_items,currentOrder:{}}

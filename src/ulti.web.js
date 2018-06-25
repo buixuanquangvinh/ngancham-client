@@ -3,8 +3,8 @@ import Swal from 'sweetalert2'
 
 export const request = (path,option = {})=>{
 
-	//const rootPath = 'https://ngancham.herokuapp.com/'
-	const rootPath = 'http://localhost:3000/'
+	const rootPath = 'https://ngancham.herokuapp.com/'
+	//const rootPath = 'http://localhost:3000/'
 
 	let defaultOption = {
 		type:'json',

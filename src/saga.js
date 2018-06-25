@@ -3,6 +3,7 @@ import { call, put, takeLatest, fork } from 'redux-saga/effects'
 import { CategorySaga } from 'features/category'
 import { ItemSaga } from 'features/item'
 import { LoginSaga } from 'features/login'
+import { MaterialSaga } from 'features/material'
 import { OrderSaga } from 'features/order'
 import { ReportSaga } from 'features/report'
 import { RoomSaga } from 'features/room'
@@ -14,6 +15,7 @@ export default function* rootSaga() {
     		fork(CategorySaga),
     		fork(ItemSaga),
         fork(LoginSaga),
+        fork(MaterialSaga),
     		fork(OrderSaga),
         fork(ReportSaga),
     		fork(RoomSaga),

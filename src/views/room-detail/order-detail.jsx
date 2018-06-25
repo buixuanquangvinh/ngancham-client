@@ -63,7 +63,6 @@ class OrderDetail extends Component {
 					          	loading={loading}
 					          	categoryOption={categoryOption}
 					          	itemList={itemList}
-					          	itemPriceList={itemPriceList}
 					          	itemModifierList={itemModifierList}
 					        />
 	      				</AppModal>
@@ -84,7 +83,6 @@ const mapStateToProps = (state) => {
     	loading:OrderSelector.getLoading(state),
     	categoryOption: CategorySelector.getCategoryOption(state),
     	itemList: ItemSelector.getItemList(state),
-    	itemPriceList: ItemSelector.getItemPriceList(state),
     	itemModifierList: ItemSelector.getItemModifierList(state)
   	}
 }

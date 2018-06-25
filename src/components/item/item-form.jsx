@@ -10,6 +10,7 @@ export default class ItemForm extends Component {
     let form = {
       item_name:'',
       item_description:'',
+      item_price:0,
       category_id:'',
       item_img_url:'',
       file:null
@@ -39,7 +40,7 @@ export default class ItemForm extends Component {
   }
 
 	render(){
-    const { item_name, item_description, category_id,item_img_url, file } = this.state
+    const { item_name, item_price, item_description, category_id,item_img_url, file } = this.state
 		const { item, categoryOptions } = this.props
     const { edit, submit, remove } = this
   	return (
@@ -53,7 +54,8 @@ export default class ItemForm extends Component {
           <input id='file-input' name='file' className='d-none' type='file' onChange={edit} multiple="multiple"/>
         </div>
         <div className='col-12'>
-          <div className='mt-2'><AppInput name='item_name' label='Tên món' value={item_name} onChange={edit}/></div>
+          <div className='mt-2'><AppInput name='item_name' label='Tên' value={item_name} onChange={edit}/></div>
+          <div className='mt-2'><AppInput name='item_price' label='Giá' value={item_price} onChange={edit}/></div>
           <div className='mt-2'><AppInput name='item_description' label='Description' value={item_description} onChange={edit}/></div>
           <div className='mt-2'><AppSelect name='category_id' label='Danh mục' value={category_id} onChange={edit} options={categoryOptions}/></div>
           <div className='mt-2'><button className='btn btn-primary btn-block' onClick={submit}>Thêm</button></div>

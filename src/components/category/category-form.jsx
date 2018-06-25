@@ -25,10 +25,10 @@ export default class CategoryForm extends Component {
     const { edit, submit } = this
   	return (
       <div className='row'>
-        <div className='col-9 col-md-6'>
+        <div className='col-9 col-md-9'>
           <AppInput name='category_name' label='Tên danh mục' value={category_name} onChange={edit}/>
         </div>
-        <div className='col-3 col-md-6'>
+        <div className='col-3 col-md-3'>
           <button className='btn btn-primary' onClick={submit}>Tạo</button>
         </div>
       </div>

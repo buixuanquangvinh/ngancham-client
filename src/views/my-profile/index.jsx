@@ -21,6 +21,7 @@ class MyProfile extends Component {
   render(){
     const { old_password, new_password, confirm_new_password } = this.state
     const { edit } = this
+    const { updatePassword } = this.props
     const user = JSON.parse(localStorage.user)
     const roles = user.roles.map((role)=>{
       return { label:role, value:role } 
@@ -37,16 +38,16 @@ class MyProfile extends Component {
             <div className='col-12 collapse mt-1' id='password_form'>
               <div className='row'>
                 <div className='col-12 col-md-6 mt-1'>
-                  <AppInput label='Old Password' name='old_password' value={old_password} onChange={edit}/>
+                  <AppInput label='Old Password' name='old_password' value={old_password} type='password' onChange={edit}/>
                 </div>
                 <div className='col-12 col-md-6 mt-1'>
-                  <AppInput label='New Password' name='new_password' value={new_password} onChange={edit}/>
+                  <AppInput label='New Password' name='new_password' value={new_password} type='password' onChange={edit}/>
                 </div>
                 <div className='col-12 col-md-6 mt-1'>
-                  <AppInput label='Confirm New Password' name='confirm_new_password' value={confirm_new_password} onChange={edit}/>
+                  <AppInput label='Confirm New Password' name='confirm_new_password' value={confirm_new_password} type='password' onChange={edit}/>
                 </div>
                 <div className='col-12 col-md-6 mt-1'>
-                  <button className='btn btn-block btn-primary'>Thay đổi password</button>
+                  <button className='btn btn-block btn-primary' onClick={()=>updatePassword(this.state)}>Thay đổi password</button>
                 </div>
               </div>
             </div>
@@ -65,6 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    updatePassword: (password_form)=> dispatch({ type:LoginAction.UPDATE_PASSWORD, payload:password_form })
   }
 }
 

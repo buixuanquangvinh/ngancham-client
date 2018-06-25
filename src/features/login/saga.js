@@ -13,7 +13,7 @@ function* login(action) {
 
 function* updatePassword(action) {
   try {
-    const payload = yield call(request,'/user',{ method:'PUT', body:JSON.stringify(action.payload) })
+    const payload = yield call(request,'/users/null',{ method:'PUT', body:JSON.stringify(action.payload) })
     yield put({ type: ActionType.LOGOUT })
   } catch (e) {
     yield put({ type: ActionType.SET_ERROR, payload:e.message })

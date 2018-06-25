@@ -21,7 +21,7 @@ class OrderCreator extends Component {
   }
 
 	render(){
-      const { loading, categoryOption, itemList, itemPriceList, itemModifierList } = this.props
+      const { loading, categoryOption, itemList, itemModifierList } = this.props
       const { preProcess } = this
 	  	return (
         <OrderForm 
@@ -29,7 +29,6 @@ class OrderCreator extends Component {
           loading={loading}
           categoryOption={categoryOption}
           itemList={itemList}
-          itemPriceList={itemPriceList}
           itemModifierList={itemModifierList}
         />
 	    )
@@ -41,7 +40,6 @@ const mapStateToProps = (state) => {
     loading:OrderSelector.getLoading(state),
     categoryOption: CategorySelector.getCategoryOption(state),
     itemList: ItemSelector.getItemList(state),
-    itemPriceList: ItemSelector.getItemPriceList(state),
     itemModifierList: ItemSelector.getItemModifierList(state)
   }
 }

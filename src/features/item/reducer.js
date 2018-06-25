@@ -5,7 +5,7 @@ const initialState = {
   loading:false,
   error:'',
   items:[],
-  item_prices:[],
+  item_materials:[],
   item_modifiers:[]
 }
 
@@ -38,25 +38,15 @@ export default function reducer(state = initialState, action) {
       return {...state, loading:false, items:state.items.filter((item)=> item.id!=action.payload.id)}
     //-------------------------------------------------------------------------------------------------
 
-    //item price
-    case ActionType.CREATE_ITEM_PRICE:
+     //item material
+    case ActionType.CREATE_ITEM_MATERIAL:
       return {...state,loading:true}
-    case ActionType.CREATE_ITEM_PRICE_SUCCESSED:
-      return {...state, loading:false, item_prices:[...state.item_prices,action.payload]}
-    case ActionType.SAVE_ITEM_PRICE:
+    case ActionType.CREATE_ITEM_MATERIAL_SUCCESSED:
+      return {...state, loading:false, item_materials:[...state.item_materials,action.payload]}
+    case ActionType.REMOVE_ITEM_MATERIAL:
       return {...state,loading:true}
-    case ActionType.SAVE_ITEM_PRICE_SUCCESSED:{
-      const new_item_prices = state.item_prices.map((price)=>{
-        if(price.id == action.payload.id)
-          return action.payload
-        else return price
-      })
-      return {...state, loading:false, item_prices:new_item_prices}
-    }
-    case ActionType.REMOVE_ITEM_PRICE:
-      return {...state,loading:true}
-    case ActionType.REMOVE_ITEM_PRICE_SUCCESSED:
-      return {...state, loading:false, item_prices:state.item_prices.filter((price)=> price.id!=action.payload.id)}
+    case ActionType.REMOVE_ITEM_MATERIAL_SUCCESSED:
+      return {...state, loading:false, item_materials:state.item_materials.filter((item_material)=> item_material.id!=action.payload.id)}
     //--------------------------------------------------------------------------------------------------
 
     //item modifier

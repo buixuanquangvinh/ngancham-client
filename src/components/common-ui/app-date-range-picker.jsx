@@ -44,8 +44,8 @@ export default class AppDateRangePicker extends Component{
 	                  	<span className="input-group-text">{label}</span>
 	                </span>
 	                <input className='form-control' ref="target" value={start+" - "+end} onClick={openPopover} readOnly/>
-	                <Popover show={open} target={this.refs.target} onHide={closePopover} style={{width:'550px', height:'300px'}}>	                		
-            			<div style={{display:'inline-block',marginRight:'10px',verticalAlign:'top'}}>
+	                <Popover show={open} target={this.refs.target} onHide={closePopover} style={{width:'auto',borderRadius:'5px'}}>	                		
+            			<div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
             				<DatePicker 
             					inline  
             					fixedHeight
@@ -55,17 +55,15 @@ export default class AppDateRangePicker extends Component{
 								endDate={endDate}
             					onChange={(e)=>onChangeStart(e.format("DD/MM/YYYY"))}
             				/>
-            				<div style={{display:'inline-block',marginLeft:'10px'}}>
-            					<DatePicker 
-            						inline  
-            						fixedHeight
-            						selectsEnd
-            						selected={endDate}
-            						startDate={startDate}
-									endDate={endDate} 
-            						onChange={(e)=>onChangeEnd(e.format("DD/MM/YYYY"))}
-            					/>
-            				</div>
+        					<DatePicker 
+        						inline  
+        						fixedHeight
+        						selectsEnd
+        						selected={endDate}
+        						startDate={startDate}
+								endDate={endDate} 
+        						onChange={(e)=>onChangeEnd(e.format("DD/MM/YYYY"))}
+        					/>
             			</div>
         			</Popover>
 	            </div>
