@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { AppInput } from 'components/common-ui'
+import { AppLoadingOverlay, AppInput } from 'components/common-ui'
 import { LoginAction, LoginSelector } from 'features/login'
 
 class Login extends Component {
@@ -17,26 +17,26 @@ class Login extends Component {
     this.setState({ [e.target.name]:e.target.value })
   }
 
-  render(){
-    const { user_name, password } = this.state
-    const { edit } = this
+  handleSubmit = (e)=>{
+    e.preventDefault()
     const { login } = this.props
+    login(this.state)
+  }
+
+  render(){
+    const { loading } = this.props
+    const { user_name, password } = this.state
+    const { edit, handleSubmit } = this
     return (
-      <div className="container-fluid" style={{overflow:'hidden',height:'100vh'}}>
-        <div className="row" style={{marginTop:'20%'}}>
-          <div className='d-none d-md-block col-md-4 text-right pt-5' style={{paddingRight:'100px'}}>
-            <div className='d-inline-block bubble' style={{width:'80px'}}></div>
-          </div>
-          <div className='col-12 col-md-4 card card-body'>
-            <div className='mt-2'><AppInput name='user_name' label='username' value={user_name} onChange={edit}/></div>
-            <div className='mt-2'><AppInput name='password' label='password' type='password' value={password} onChange={edit}/></div>
-            <div className='mt-2'><button className='btn btn-primary btn-block' onClick={()=>login(this.state)}>Login</button></div>
-          </div>
-          <div className='d-none d-md-block col-md-4 text-left pt-5' style={{paddingLeft:'100px'}}>
-            <div className='d-inline-block bubble' style={{width:'80px'}}></div>
-          </div>
-        </div>
+      <AppLoadingOverlay loading={loading}>
+      <div className="container-fluid">
+        <form onSubmit={handleSubmit} className='card card-body' style={{marginTop:'30%'}}>
+          <div className='mt-2'><AppInput name='user_name' label='username' value={user_name} onChange={edit}/></div>
+          <div className='mt-2'><AppInput name='password' label='password' type='password' value={password} onChange={edit}/></div>
+          <div className='mt-2'><button type="submit" className='btn btn-primary btn-block'>Login</button></div>
+        </form>
       </div>
+      </AppLoadingOverlay>
     )
   }
 
@@ -44,6 +44,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    loading: LoginSelector.getLoading(state)
   }
 }
 

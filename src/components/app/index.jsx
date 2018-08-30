@@ -9,7 +9,6 @@ import { AppLoadingOverlay } from 'components/common-ui'
 
 import { CategorySelector } from 'features/category'
 import { ItemSelector } from 'features/item'
-import { LoginSelector } from 'features/login'
 import { OrderSelector } from 'features/order'
 import { ReportSelector } from 'features/report'
 import { RoomSelector } from 'features/room'
@@ -17,11 +16,11 @@ import { RoomSelector } from 'features/room'
 class App extends Component {
 
 	render(){
-		const { loading, children } = this.props
+    const { loading, children } = this.props
   	return (
       <AppLoadingOverlay loading={loading}>
-        <Nav/>
-        <div className='container-fluid' style={{marginTop:'60px'}}>  
+        <Nav {...this.props}/>
+        <div className='container-fluid' style={{marginTop:'70px'}}>  
           {children}
         </div>
       </AppLoadingOverlay>
@@ -32,7 +31,12 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      loading:(CategorySelector.getLoading(state) || ItemSelector.getLoading(state) || LoginSelector.getLoading(state) || OrderSelector.getLoading(state) || ReportSelector.getLoading(state) || RoomSelector.getLoading(state) )
+      loading:(CategorySelector.getLoading(state) ||
+        ItemSelector.getLoading(state) ||
+        OrderSelector.getLoading(state) ||
+        ReportSelector.getLoading(state) ||
+        RoomSelector.getLoading(state)
+      )
     }
 }
 
