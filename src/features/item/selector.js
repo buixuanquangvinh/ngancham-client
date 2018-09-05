@@ -10,5 +10,5 @@ export const getItemMaterialList = (state,id) => state[MODULE_NAME].item_materia
 export const getItemList = (state) => state[MODULE_NAME].items;
 export const getItemModifierList = (state,id) => state[MODULE_NAME].item_modifiers;
 
-export const getItem = (state,id) => state[MODULE_NAME].items.filter((item)=> item.id == id)[0];
+export const getItem = (state,id) => state[MODULE_NAME].items.find((item)=> item.id == id);
 export const getItemModifiers = (state,id) => state[MODULE_NAME].item_modifiers.filter((modifier)=> modifier.item_id == id);

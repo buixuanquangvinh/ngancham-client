@@ -29,9 +29,9 @@ export default class Material extends Component {
 	      	<div className="card mt-2">
 		        <div className='card-body'>
 		        	<div className='row'>
-		        		<div className='col-3'>{material.material_name}</div>
+		        		<div className='col-4'>{material.material_name}</div>
 		        		<div className='col-3'>{material.material_amount}</div>
-		        		<div className='col-3'>{material.material_unit}</div>
+		        		<div className='col-2'>{material.material_unit}</div>
 		        		<div className='col-3'>
 		        			<AppModal id={"material-add-form"+material.id} label={<i className="fas fa-plus"></i>}>
 		        				<div className='row'>

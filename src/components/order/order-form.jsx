@@ -72,7 +72,7 @@ export default class OrderForm extends Component {
 		const { editFilter, editForm, addOrderItem, editOrderItem, removeOrderItem, getItemModifiers, submit } = this
 	  	return (
 	      	<div className="row">
-	        	<div className="col-12 col-md-6 mt-2">
+	        	<div className="col-12 col-md-8 mt-2">
               <div className='row'>
   	        		<div className='col-8 col-md-6'><AppInput name='order_number' label='Number' value={form.order_number} onChange={editForm}/></div>
           			<div className='col-4 col-md-6'><button className='btn btn-primary btn-block' onClick={loading?null:submit}>TẠO</button></div>
@@ -91,7 +91,7 @@ export default class OrderForm extends Component {
                 </div>
               </div>
 	        	</div>
-	        	<div className="col-12 col-md-6 mt-2">
+	        	<div className="col-12 col-md-4 mt-2">
 	        		<div className='row'>
 	        			<div className='col-12'>
 	        				<AppSelect name='category' label='Category' value={filter.category} options={categoryOption} onChange={editFilter}/>
@@ -99,7 +99,7 @@ export default class OrderForm extends Component {
                 <div className='col-12 mt-2'>
                   <div className='row'>
       					    {itemList.filter((item)=>filter.category?item.category_id==filter.category:true).map((item)=>{
-      					        return <div className='col-12 col-md-4' key={item.id} onClick={()=>addOrderItem(item)}><Item item={item}/></div>
+      					        return <div className='col-12 col-md-6' key={item.id} onClick={()=>addOrderItem(item)}><Item item={item}/></div>
       					    })}
                   </div>
                 </div>
@@ -119,17 +119,17 @@ class OrderItem extends Component {
         <div className='card-body row p-1'>
           <div className='col-6 col-md-3'>{orderItem.item_name}</div>
           <div className='col-6 col-md-2'>{orderItem.item_price}</div>
-          <div className='col-6 col-md-4'>
+          <div className='col-7 col-md-4'>
             <AppMultiSelect name='item_modifiers' label='modifiers' value={orderItem.item_modifiers} options={modifiers} onChange={ (value)=>edit({target:{name:'item_modifiers',value:value}}) } compact='true'/>
           </div>
-          <div className='col-6 col-md-3'>
+          <div className='col-5 col-md-3'>
             <button className='btn btn-light' onClick={orderItem.number_of_item>1?()=>edit({target:{name:'number_of_item',value:parseInt(orderItem.number_of_item)-1}}):null}>
               <i className='fas fa-minus'/>
             </button>&nbsp;
             {orderItem.number_of_item}&nbsp;
             <button className='btn btn-light' onClick={()=>edit({target:{name:'number_of_item',value:parseInt(orderItem.number_of_item)+1}})}>
               <i className='fas fa-plus'/>
-            </button>&nbsp;&nbsp;&nbsp;
+            </button>&nbsp;
             <button className='btn btn-danger' onClick={remove}><i className='fas fa-times'/></button>
           </div>
         </div>

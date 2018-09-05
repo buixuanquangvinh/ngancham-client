@@ -19,7 +19,7 @@ class Nav extends Component {
     const { itemClass } = this
     const user = JSON.parse(localStorage.user)
   	return (
-      <nav className="navbar fixed-top text-light bg-primary">
+      <nav className="navbar fixed-top text-light" style={{backgroundColor:'#6610f2'}}>
         <div className="navbar-brand dropdown">
           <a className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
             <i className='fab fa-chrome'></i>

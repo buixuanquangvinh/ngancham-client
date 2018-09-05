@@ -17,10 +17,10 @@ class Foot extends Component {
         const { pathname } = this.props.location
         const { categoryOptions, createItem, createCategory, createMaterial, createRoom, createUser } = this.props
         return (
-            <footer className="navbar fixed-bottom text-light bg-primary" style={{zIndex:'1050',display:'flex',justifyContent:'space-between'}}>
-              <span style={{fontSize:'30px'}}><i className="fas fa-phone"></i></span>
+            <footer className="navbar fixed-bottom text-light" style={{zIndex:'1050',display:'flex',justifyContent:'space-around',backgroundColor:'#6610f2'}}>
+              <span style={{fontSize:'30px'}}><i className="fas fa-cogs"></i></span>
               <div style={{marginTop:'-50px'}}>
-                <AppModal id="add-form" label={<i className="fas fa-plus"></i>} style={{borderRadius:'50%',fontSize:'30px',width:'70px'}}>
+                <AppModal id="add-form" label={<i className="fas fa-plus"></i>} style={{borderRadius:'50%',fontSize:'30px',width:'70px',backgroundColor:'#6610f2',border:'none'}}>
                     {pathname=='/category'?<CategoryForm submit={createCategory}/>:null}
                     {pathname=='/item'?<ItemForm categoryOptions={categoryOptions} submit={createItem}/>:null}
                     {pathname=='/material'?<MaterialForm submit={createMaterial}/>:null}
@@ -28,7 +28,9 @@ class Foot extends Component {
                     {pathname=='/user'?<UserForm submit={createUser}/>:null}
                 </AppModal>
               </div>
-              <span style={{fontSize:'30px'}}><i className="fas fa-phone"></i></span>
+              <span style={{fontSize:'30px'}}>
+                <a href="tel:+84936865068" className="text-white"><i className="fas fa-phone"></i></a>
+              </span>
             </footer>
         )
 	}

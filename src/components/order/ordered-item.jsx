@@ -25,10 +25,15 @@ export default class OrderedItem extends Component {
 			<div className='d-table-cell p-1'>{name}</div>
 			<div className='d-table-cell p-1'><AppCurrency>{sum}</AppCurrency></div>
 			<div className='d-table-cell p-1'>{orderedItem.number_of_item}</div>
-			<div className='d-table-cell p-1'>
-			  {cooked?<button className='btn btn-primary' onClick={()=>saveOrderedItem({...orderedItem,status:'cooked'})}><i className="fas fa-check"></i></button>:null}&nbsp;
-			  {done?<button className='btn btn-success' onClick={()=>saveOrderedItem({...orderedItem,status:'done'})}><i className="fas fa-check"></i></button>:null}&nbsp;
-			  {cancel?<button className='btn btn-danger' onClick={()=>saveOrderedItem({...orderedItem,status:'cancel'})}><i className="fas fa-times"></i></button>:null}
+			<div className='d-table-cell p-1 dropdown'>
+				<button className="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
+				<div className="dropdown-menu">
+					<div style={{display:'flex',justifyContent:'space-around'}}>
+						{cooked?<button className='btn btn-primary' onClick={()=>saveOrderedItem({...orderedItem,status:'cooked'})}><i className="fas fa-check"></i></button>:null}
+						{done?<button className='btn btn-success' onClick={()=>saveOrderedItem({...orderedItem,status:'done'})}><i className="fas fa-check"></i></button>:null}
+						{cancel?<button className='btn btn-danger' onClick={()=>saveOrderedItem({...orderedItem,status:'cancel'})}><i className="fas fa-times"></i></button>:null}
+					</div>
+				</div>
 			</div>
 		  </div>
 		)

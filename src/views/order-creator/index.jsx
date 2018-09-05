@@ -13,7 +13,7 @@ class OrderCreator extends Component {
     const { itemModifierList, createOrder } = this.props
     let new_order_items = form.order_items.map((order_item)=>{
       let new_modifiers = order_item.item_modifiers.map((item_modifier)=>{
-        return itemModifiers.filter((mod)=> mod.id==item_modifier)[0]
+        return itemModifierList.filter((mod)=> mod.id==item_modifier)[0]
       })
       return {...order_item,item_modifiers:new_modifiers}
     })

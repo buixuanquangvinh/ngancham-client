@@ -1,39 +1,13 @@
 import React, { Component } from 'react'
-import Popover from 'react-simple-popover'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 
 export default class AppDateRangePicker extends Component{
 
-	constructor(props){
-		super(props)
-		this.state = {
-			open:false,
-		}
-	}
-
-	openPopover = ()=>{
-		this.setState({open:true})
-	}
-
-	closePopover = ()=>{
-		this.setState({open:false})
-	}
-
 
 	render(){
 		const { label, start, end, onChangeStart, onChangeEnd } = this.props
-		const { open } = this.state
-		const { openPopover, closePopover } = this
-
-		const liStyle={
-			padding:'2px 10px',
-			display:'block',
-			marginBottom: '5px',
-			width:'140px',
-			textAlign:'left'
-		}
 
 		let startDate = moment(start,"DD/MM/YYYY")
 		let endDate = moment(end,"DD/MM/YYYY")
@@ -43,29 +17,35 @@ export default class AppDateRangePicker extends Component{
 	                <span className='input-group-prepend'>
 	                  	<span className="input-group-text">{label}</span>
 	                </span>
-	                <input className='form-control' ref="target" value={start+" - "+end} onClick={openPopover} readOnly/>
-	                <Popover show={open} target={this.refs.target} onHide={closePopover} style={{width:'auto',borderRadius:'5px'}}>	                		
-            			<div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-            				<DatePicker 
-            					inline  
-            					fixedHeight
-            					selectStart
-            					selected={startDate} 
-            					startDate={startDate}
-								endDate={endDate}
-            					onChange={(e)=>onChangeStart(e.format("DD/MM/YYYY"))}
-            				/>
-        					<DatePicker 
-        						inline  
-        						fixedHeight
-        						selectsEnd
-        						selected={endDate}
-        						startDate={startDate}
-								endDate={endDate} 
-        						onChange={(e)=>onChangeEnd(e.format("DD/MM/YYYY"))}
-        					/>
-            			</div>
-        			</Popover>
+	                <input className='form-control' value={start+" - "+end} data-toggle="modal" data-target="#datePicker" readOnly/>
+					<div className="modal fade" id='datePicker' tabIndex="-1" role="dialog">
+						<div className="modal-dialog" role="document">
+							<div className="modal-content">
+								<div className="modal-body">
+									<div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
+										<DatePicker 
+											inline  
+											fixedHeight
+											selectStart
+											selected={startDate} 
+											startDate={startDate}
+											endDate={endDate}
+											onChange={(e)=>onChangeStart(e.format("DD/MM/YYYY"))}
+										/>
+										<DatePicker 
+											inline  
+											fixedHeight
+											selectsEnd
+											selected={endDate}
+											startDate={startDate}
+											endDate={endDate} 
+											onChange={(e)=>onChangeEnd(e.format("DD/MM/YYYY"))}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 	            </div>
             </div>
 		)
