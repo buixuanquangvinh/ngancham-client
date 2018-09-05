@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { AppInput, AppModal } from 'components/common-ui'
+import { AppInput } from 'components/common-ui'
 
 export default class RoomForm extends Component {
 
@@ -22,7 +22,6 @@ export default class RoomForm extends Component {
     const { room_name } = this.state
     const { edit, submit } = this
     return (
-      <AppModal id="room-form" label={<i className="fas fa-plus"></i>}>
         <div className='row'>
           <div className='col-9'>
             <AppInput name='room_name' label='Tên phòng' value={room_name} onChange={edit}/>
@@ -31,7 +30,6 @@ export default class RoomForm extends Component {
             <button className='btn btn-primary' onClick={submit}>Tạo</button>
           </div>
         </div>
-      </AppModal>
     )
   }
 

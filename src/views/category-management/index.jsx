@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { CategoryAction, CategorySelector } from 'features/category'
+import { CategorySelector } from 'features/category'
 
-import { AppModal } from 'components/common-ui'
-import { CategoryForm, Category } from 'components/category'
+import { Category } from 'components/category'
 
 class CategoryManagement extends Component {
 
 	render(){
-		const { categoryList, create } = this.props
+		const { categoryList } = this.props
 	  	return (
 	      <div className="row">
-	        <div className="col-12">
-	        	<AppModal id="category-form" label={<i className="fas fa-plus"></i>}><CategoryForm submit={create}/></AppModal>
-	        </div>
         	{categoryList.map((category)=>{
 	          return <div className='col-12' key={category.id}><Category category={category}/></div>
 	        })}
@@ -32,7 +28,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    create: (category) => dispatch({ type:CategoryAction.CREATE_CATEGORY, payload: category })
   }
 }
 

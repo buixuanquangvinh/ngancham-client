@@ -3,20 +3,14 @@ import { connect } from 'react-redux'
 
 import { MaterialAction, MaterialSelector } from 'features/material'
 
-import { AppModal } from 'components/common-ui'
-import { MaterialForm, Material } from 'components/material'
+import { Material } from 'components/material'
 
 class MaterialManagement extends Component {
 
 	render(){
-		const { materialList, create, buy } = this.props
+		const { materialList, buy } = this.props
 	  	return (
 	      	<div className="row">
-	        	<div className="col-12">
-	        		<AppModal id="material-form" label={<i className="fas fa-plus"></i>}>
-	        			<MaterialForm submit={create}/>
-	        		</AppModal>
-	        	</div>
 	        	<div className="col-12 mt-2" style={{height:'90vh',overflow:'auto'}}>
 	        		<div className='row'>
 		        		{materialList.map((material)=>{
@@ -38,7 +32,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    create: (material) => dispatch({ type:MaterialAction.CREATE_MATERIAL, payload:material }),
     buy: (transaction) => dispatch({ type:MaterialAction.BUY_MATERIAL, payload:transaction })
   }
 }

@@ -57,7 +57,7 @@ class OrderDetail extends Component {
 			        </div>
 		      		<div className='col-12'>
 		      			<button className='btn btn-success btn-block mb-2' onClick={()=>checkout(currentOrder)}>THANH TOÁN</button>
-          				<AppModal id={"ordered-item-form"+os} label='THÊM MÓN' full={true}>
+          				<AppModal id={"ordered-item-form"+os} label='THÊM MÓN'>
           					<OrderForm 
           						submit={preProcess}
 					          	loading={loading}

@@ -3,9 +3,7 @@ import React, { Component } from 'react'
 export default class AppModal extends Component{
 
 	render(){
-		const { id, height, label, children, full } = this.props
-		let style = {}
-		if(height) style = { height:height }
+		const { id, label, children, style } = this.props
 		return(
 			<div>
 				<button className="btn btn-primary btn-block" data-toggle="modal" data-target={"#"+id} style={style}>{label}</button>
@@ -13,7 +11,7 @@ export default class AppModal extends Component{
 				  <div className="modal-dialog" role="document" style={{ minWidth: '100%', margin: '0px' }}>
 				    <div className="modal-content" style={{ minHeight:'100vh' }}>
 				    	<div className="modal-header">
-			                <button className="close" data-dismiss="modal">×</button>
+			            <button className="close" data-dismiss="modal">×</button>
 			            </div>
 				      	<div className="modal-body">
 				        	{children}

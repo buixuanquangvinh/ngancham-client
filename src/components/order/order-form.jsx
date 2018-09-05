@@ -82,7 +82,7 @@ export default class OrderForm extends Component {
                       <OrderItem 
                         key={orderItem.temp_id}
                         orderItem={orderItem}
-                        edit={(e)=>editOrderItem(orderItem.temp_id,e.target.name,e.target.value)} 
+                        edit={(e)=>editOrderItem(orderItem.temp_id,e.target.name,e.target.value)}
                         modifiers={getItemModifiers(orderItem.id)}
                         remove={()=>removeOrderItem(orderItem)}
                       />
@@ -123,9 +123,13 @@ class OrderItem extends Component {
             <AppMultiSelect name='item_modifiers' label='modifiers' value={orderItem.item_modifiers} options={modifiers} onChange={ (value)=>edit({target:{name:'item_modifiers',value:value}}) } compact='true'/>
           </div>
           <div className='col-6 col-md-3'>
-            <button className='btn btn-light' name='number_of_item' onClick={orderItem.number_of_item>1?edit:null} value={orderItem.number_of_item-1}><i className='fas fa-minus'/></button>&nbsp;
+            <button className='btn btn-light' onClick={orderItem.number_of_item>1?()=>edit({target:{name:'number_of_item',value:parseInt(orderItem.number_of_item)-1}}):null}>
+              <i className='fas fa-minus'/>
+            </button>&nbsp;
             {orderItem.number_of_item}&nbsp;
-            <button className='btn btn-light' name='number_of_item' onClick={edit} value={parseInt(orderItem.number_of_item)+1}><i className='fas fa-plus'/></button>&nbsp;&nbsp;&nbsp;
+            <button className='btn btn-light' onClick={()=>edit({target:{name:'number_of_item',value:parseInt(orderItem.number_of_item)+1}})}>
+              <i className='fas fa-plus'/>
+            </button>&nbsp;&nbsp;&nbsp;
             <button className='btn btn-danger' onClick={remove}><i className='fas fa-times'/></button>
           </div>
         </div>

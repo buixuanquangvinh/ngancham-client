@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { ItemAction, ItemSelector } from 'features/item'
-import { CategorySelector } from 'features/category'
+import { ItemSelector } from 'features/item'
 
-import { AppModal } from 'components/common-ui'
-import { ItemForm, Item } from 'components/item'
+import { Item } from 'components/item'
 
 class ItemManagement extends Component {
 
 	render(){
-		const { itemList, categoryOptions, create } = this.props
+		const { itemList } = this.props
 	  	return (
 	      	<div className="row">
-	        	<div className="col-12">
-	        		<AppModal id="item-form" label={<i className="fas fa-plus"></i>}>
-	        			<ItemForm categoryOptions={categoryOptions} submit={create}/>
-	        		</AppModal>
-	        	</div>
 	        	<div className="col-12 mt-2" style={{height:'90vh',overflow:'auto'}}>
 	        		<div className='row'>
 		        		{itemList.map((item)=>{
@@ -33,14 +26,12 @@ class ItemManagement extends Component {
 
 const mapStateToProps = (state) => {
   return {
-  	itemList: ItemSelector.getItemList(state),
-    categoryOptions: CategorySelector.getCategoryOption(state)
+  	itemList: ItemSelector.getItemList(state)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    create: (item) => dispatch({ type:ItemAction.CREATE_ITEM, payload:item })
   }
 }
 

@@ -5,6 +5,7 @@ import { DragDropContext } from 'react-dnd'
 import TouchBackend from 'react-dnd-touch-backend'
 
 import Nav from './nav'
+import Foot from './footer'
 import { AppLoadingOverlay } from 'components/common-ui'
 
 import { CategorySelector } from 'features/category'
@@ -17,12 +18,19 @@ class App extends Component {
 
 	render(){
     const { loading, children } = this.props
+    const contentStyle = {
+      marginTop:'70px',
+      marginBottom:'80px',
+      overflowX:'hidden',
+      padding:'0px 5px'
+    }
   	return (
       <AppLoadingOverlay loading={loading}>
         <Nav {...this.props}/>
-        <div className='container-fluid' style={{marginTop:'70px'}}>  
+        <div className='container-fluid' style={contentStyle}>  
           {children}
         </div>
+        <Foot {...this.props}/>
       </AppLoadingOverlay>
     )
 	}
